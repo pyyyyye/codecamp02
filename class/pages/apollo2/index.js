@@ -6,16 +6,18 @@ import { useRouter } from 'next/router'
 
 const CREATE_BOARD = gql`
              mutation createBoard($createBoardInput: CreateBoardInput!){       
-                createBoard(createBoardInput:$createBoardInput){_id}
+                createBoard(createBoardInput:$createBoardInput){
+                    _id
+                }
             }`
 
 
 export default function ApolloPage(){
-    const router = useRouter()
-    const [writer, setWriter] = useState()
-    const [password, setPassword]= useState()
-    const [title, setTitle] = useState()
-    const [contents, setContents] = useState()
+    const router = useRouter('')
+    const [writer, setWriter] = useState('') //글쓴이
+    const [password, setPassword]= useState('') //비번
+    const [title, setTitle] = useState('') // 제목
+    const [contents, setContents] = useState('') 
 
     function onChangeWriter(event){
         setWriter(event.target.value)
@@ -30,7 +32,7 @@ export default function ApolloPage(){
         setContents(event.target.value)
     }
 
-    const [createBoardMutation]=useMutation( CREATE_BOARD )
+    const [createBoardMutation]= useMutation( CREATE_BOARD )
 
     async function onClickSubmit(){
         try{

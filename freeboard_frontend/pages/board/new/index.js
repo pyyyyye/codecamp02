@@ -1,9 +1,21 @@
-// lacallhost:2400/
+// 게시물 등록 화면 
+
 import { useState } from 'react'
 import {useMutation, gql} from '@apollo/client'
-import {Wrapper, Title, Contents, SubTitle, MyInput, LongInput, Categorize, InputBox, TopBox, ContBox, ContInput, AddressBox, AddressNumInput, AddressButton, AddressInput, PhotoBox, UploadBox, SmallBox, RadioButton, RadioBox, ButtonBox, Button1, LoadBox, LoadButton, ErrorM} from '../../../styles/homework.styles'
+import { useRouter } from 'next/router'
+import {Wrapper, Title, Contents, SubTitle, MyInput, LongInput, Categorize, InputBox, TopBox, ContBox, ContInput, AddressBox, AddressNumInput, AddressButton, AddressInput, PhotoBox, UploadBox, SmallBox, RadioButton, RadioBox, ButtonBox, Button1, LoadButton, ErrorM} from '../../../styles/homework.styles'
+
+const CREATE_BOARD =  gql`
+    mutation createBoard( $createBoardInput: CreateBoardInput! ){ 
+      createBoard( createBoardInput:$createBoardInput ){
+        _id  
+      }
+    }
+  `
+    //저 _id들어간 자리에 최소 1가지 이상의 요소가 들어가야 함. 여러개 들어가도 상관x
 
 export default function NewPage(){
+  const router = useRouter()
   const [id, setId] = useState('')
   const [pw, setPw] = useState('')
   const [title, setTitle] = useState('')
@@ -19,35 +31,31 @@ export default function NewPage(){
   function onChangeContents(event){ setContents(event.target.value) }
 
 
+  const [createBoardMutation] = useMutation(CREATE_BOARD)
 
-  const [hodoojadoo] = useMutation(
-    gql`
-      mutation post( $xxx: CreateBoardInput! ){ 
-        createBoard( createBoardInput:$xxx ){
-          _id  
-        }
-      }
-    `
-  )    //저 _id들어간 자리에 최소 1가지 이상의 요소가 들어가야 함. 여러개 들어가도 상관x
-
-  async function onClickSubmit(){
-    const result = await hodoojadoo({
-          variables:{ 
-            xxx:{
-              writer:id,
-              password:pw,
-              title:title,
-              contents:contents
-            }
-          }
-      })
-      console.log(result)
-  }
+  // async function onClickSubmit(){
+    // try{
+    //   const result = await createBoardMutation({
+    //     variables:{ 
+    //       createBoard:{
+    //         writer:id,
+    //         password:pw,
+    //         title:title,
+    //         contents:contents
+    //       }}
+    // })
+    // console.log("성공")
+    // // alert(result.data.createBoard._id)
+    // // alert(result.data.createBoard._id)
+    // router.push(`/detail/${result.data.createBoard._id}`)
+    // }
+    //  catch(error){
+    //   alert(error) }
   
 
 
    //--------------- LastButton End ---------------//
-  function LastButton(){ 
+    async function onClickSubmit(){ 
     if(id!==""){ setIdError('') } 
     if(pw!==""){ setPwError('') } 
     if(title!==""){ setTitleError('') } 
@@ -72,11 +80,27 @@ export default function NewPage(){
     } else{
         alert('게시물이 등록되었습니다.')
     } 
-  } 
+    try{
+      const result = await createBoardMutation({
+        variables:{ 
+          createBoardInput:{
+            writer:id,
+            password:pw,
+            title:title,
+            contents:contents
+          }}
+    })
+    // console.log("성공")
+    // alert(result.data.createBoard._id)
+    router.push(`/board/detail/${result.data.createBoard._id}`)
+    }
+     catch(error){
+      alert(error)}
+  }  
 
 
 
-  return(
+  return( 
     <Wrapper>
       <Title>게시판 등록 화면입니다.</Title>
       <Contents>
@@ -106,7 +130,7 @@ export default function NewPage(){
         <ContBox>
           <Categorize>내용</Categorize>
           <ContInput type="text" onChange={onChangeContents}placeholder="내용을 작성해주세요."/>
-          <ErrorM>{TitleError}</ErrorM>
+          <ErrorM>{ContentsError}</ErrorM>
         </ContBox> 
 
 

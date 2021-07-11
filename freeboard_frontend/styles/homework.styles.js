@@ -132,7 +132,7 @@ export const SmallBox = styled.label`
     padding-top: 18px;
 `
 
-export const LoadButton = styled.input`
+export const LoadButton = styled.input`  //파일업로드 input박스 숨김
     display: none;
 `
 
