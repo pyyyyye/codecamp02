@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+                 // =styled.component
 
 export const Contents = styled.div`
     max-width: 1200px;

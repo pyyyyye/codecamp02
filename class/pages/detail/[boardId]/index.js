@@ -14,7 +14,7 @@ export default function DetailPage(){
     const router = useRouter()
     const {data} = useQuery(
         FETCH_BOARD,
-        { variables:{ boardId: router.query.boardId } }
+        { variables:{ boardId: router.query.boardId } } //앞에 boardId를 detail 이동 페이지 폴더명과 같게 해줘야함.
     )
     console.log(data)
 
