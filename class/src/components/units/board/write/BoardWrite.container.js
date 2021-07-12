@@ -11,36 +11,31 @@ export default function BoardWrite(){
     const [password, setPassword]= useState('') //비번
     const [title, setTitle] = useState('') // 제목
     const [contents, setContents] = useState('') 
-
     const [active, setActive] = useState(false)//초기값 false (파란색)
 
     
-
     function onChangeWriter(event){
         setWriter(event.target.value)
         //위 input들 다 채워지면 값이 true로 바뀌고 (빨간색)으로 바뀌게
-        if (
-            writer!=="" && password !=="" && title !=="" && contents !==""
-        ){ setActive(true) }
+        if (event.target.value && password  && title && contents){ setActive(true) }
+        else {setActive(false)}
     }
     function onChangePassword(event){
         setPassword(event.target.value)
-        if ( //위에만 하면 순서 바꿔서 적었을 땐 적용이 안되니까 모두 적어줘야해.
-            writer!=="" && password !=="" && title !=="" && contents !==""
-        ){ setActive(true) }
+       //위에만 하면 순서 바꿔서 적었을 땐 적용이 안되니까 모두 적어줘야해.
+        if (writer && event.target.value && title && contents){ setActive(true)}
+        else {setActive(false)}
+        
     }
     function onChangeTitle(event){
         setTitle(event.target.value)
-        if (
-            writer!=="" && password !=="" && title !=="" && contents !==""
-        ){ setActive(true) }
+        if ( writer && password  && event.target.valuele  && contents){ setActive(true) }
+        else {setActive(false)}
     }
     function onChangeContents(event){
         setContents(event.target.value)
-        if (
-            writer!=="" && password !=="" && title !=="" && contents !==""
-        ){ setActive(true) }
-        
+        if (writer && password && title && event.target.value){ setActive(true) }
+        else {setActive(false)}
     }
     
 
