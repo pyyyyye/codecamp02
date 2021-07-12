@@ -1,5 +1,8 @@
 // 게시물 정보 전송 및 등록 완료페이지
 // import { useMutation, gql } from '@apollo/client'
+
+//!!!!!! src/components/units/board/write 파일들과 연결 -------
+
 import BoardWrite from "../../src/components/units/board/write/BoardWrite.container"
 
 // const CREATE_BOARD = gql`
