@@ -13,7 +13,6 @@ export default function BoardWrite(){
     const [contents, setContents] = useState('') 
     const [active, setActive] = useState(false)//초기값 false (파란색)
 
-    
     function onChangeWriter(event){
         setWriter(event.target.value)
         //위 input들 다 채워지면 값이 true로 바뀌고 (빨간색)으로 바뀌게
@@ -35,7 +34,7 @@ export default function BoardWrite(){
     function onChangeContents(event){
         setContents(event.target.value)
         if (writer && password && title && event.target.value){ setActive(true) }
-        else {setActive(false)}
+        
     }
     
 
