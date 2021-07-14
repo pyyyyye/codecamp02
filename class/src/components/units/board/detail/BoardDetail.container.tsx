@@ -11,6 +11,11 @@ export default function BoardDetail(){
         { variables:{ boardId: router.query.boardId } }
         //앞에 boardId를 detail 이동 페이지 폴더명과 같게 해줘야함.
     )
-     return( <BoardDetailUI qqq={data}/> ) 
+
+    function onClickEdit(){
+        router.push(`/detail/${router.query.boardId}/edit`)
+    }
+
+     return( <BoardDetailUI qqq={data} onClickEdit={onClickEdit}/> ) 
      //qqq=key, data=value useQuery서 받아온거.
 }
