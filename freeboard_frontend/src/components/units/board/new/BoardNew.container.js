@@ -19,25 +19,34 @@ export default function NewPage(){
         //글쓴,비번,제목,내용  모두 채워지면 값이 true로 바뀜(진노랑)
         setId(event.target.value)
         if (event.target.value && pw && title && contents){ 
-            setActive(true)} else { setActive(false) }
+          setActive(true)
+        } else { 
+          setActive(false) 
+        }
     }
     function onChangePassword(event){
         setPw(event.target.value)
         if (id && event.target.value && title && contents){ 
-            setActive(true)} else { setActive(false) }
+          setActive(true)
+        } else { 
+          setActive(false) 
+        }
     }
     function onChangeTitle(event){
         setTitle(event.target.value)
         if (id && pw && event.target.value && contents){ 
-            setActive(true)
-          } else {
-            setActive(false)
-          }
+          setActive(true)
+        } else {
+          setActive(false)
+        }
     }
     function onChangeContents(event){
         setContents(event.target.value) 
         if (id && pw && title && event.target.value){ 
-            setActive(true)} else { setActive(false) }
+          setActive(true)
+        } else { 
+          setActive(false)
+        }
     }
   
     const [createBoardMutation] = useMutation(CREATE_BOARD)
@@ -102,7 +111,7 @@ export default function NewPage(){
             onChangeContents={onChangeContents}
             onClickSubmit={onClickSubmit}
 
-            active={active.colorChange}
+            active={active}
         />
     )
 }

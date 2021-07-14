@@ -149,5 +149,4 @@ export const ButtonBox = styled.button`
     /* border: 1px solid lightgray; */
     display: block;
     margin: 50px auto 0;
-    
 `

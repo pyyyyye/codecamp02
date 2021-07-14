@@ -1,24 +1,26 @@
-import {Contents, TopContentsWriter, WriterProfileImg, WriterInfo, WriterIcon, Name, Date, MiddleContentsPost,  ContentsTitle, ContentsImage, ContentsText, ContentsVideo, BottomContentsRecommend, Recommendations, RecomImage, RecomCount, DecomImage, DecomCount, LinkIcon, MapIcon} from './DetailPage.styles';
+//=== 게시물 상세페이지 presenter.js ===
+import {PostContents, TopContentsWriter, WriterProfileImg, WriterInfo, WriterIcon, Name, Date, MiddleContentsPost,  ContentsTitle, ContentsImage, ContentsText, ContentsVideo, BottomContentsRecommend, Recommendations, RecomImage, RecomCount, DecomImage, DecomCount, LinkIcon, MapIcon, EtcContents, BottomButtons, GoToListButton, ModifyButton, DeletePostsButton} from './DetailPage.styles';
 
 export default function DetailPageUI(props){
     return( 
         <> 
-            <Contents>
-                {/* ----- TopContentsWriter Start ----- */}
+            {/* == 상세페이지 게시물 영역 == */}
+            <PostContents>
+                {/*----- TopContentsWriter Start -----*/}
                 <TopContentsWriter >{props.onDetail?.fetchBoard.writer}
                     <WriterProfileImg></WriterProfileImg>
                     <WriterInfo>
                         <Name>박영은</Name>
                         <Date>Date : 2020.02.18</Date>
                     </WriterInfo>
-                    <WriterIcon> {/*---- 우측 픽토그램 ----*/}
+                    <WriterIcon> {/*---- 우측 픽토그램 ---*/}
                         <LinkIcon src="/link.png" />
                         <MapIcon src="/link2.png" />
                     </WriterIcon>
                 </TopContentsWriter>   
 
 
-                {/* ----- MiddleContentsPost Start ----- */}
+                {/* --- MiddleContentsPost Start --- */}
                 <MiddleContentsPost> {props.onDetail?.fetchBoard.title}
                     <ContentsTitle>게시글 제목입니다.</ContentsTitle>
                     <ContentsImage src="/detailpageImage.png" />
@@ -27,8 +29,7 @@ export default function DetailPageUI(props){
                     <ContentsVideo></ContentsVideo>
                 </MiddleContentsPost>
 
-
-                {/* ----- BottomContentsRecommend Start ----- */}
+                {/* --- BottomContentsRecommend Start --- */}
                 <BottomContentsRecommend>{props.onDetail?.fetchBoard.contents}
                     <Recommendations> {/* 추천 */}
                         <RecomImage src="/recom.png" />
@@ -39,8 +40,23 @@ export default function DetailPageUI(props){
                         <DecomCount>1920</DecomCount>
                     </Recommendations>
                 
-                </BottomContentsRecommend>
-            </Contents>          
+                </BottomContentsRecommend> 
+            </PostContents>   
+        
+            {/* == 게시글 외 하단 기타 컨텐츠 시작 == */}
+            <EtcContents>
+                <BottomButtons>
+                    {/* -- '목록으로' 버튼 -- */}
+                    <GoToListButton>목록으로</GoToListButton>
+
+                    {/* -- '수정하기' 버튼 -- */}
+                    <GoToListButton>수정하기</GoToListButton>
+
+                    {/* -- '삭제하기' 버튼 -- */}
+                    <GoToListButton>삭제하기</GoToListButton>
+                </BottomButtons>
+
+            </EtcContents>       
         </>
     )
 

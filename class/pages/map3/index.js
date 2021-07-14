@@ -14,14 +14,14 @@ const FETCH_BOARDS = gql`
         }
     }
 `
-//-----------------------styled Start----------------------//
+//-----------------------Queries Start----------------------//
 const DELETE_BOARD = gql`
     mutation deleteBoard($aaa : ID!){  # aaa를 지우는 기능 추가
         deleteBoard(boardId: $aaa)
 
     }
 `
-
+//-----------------------Styles Start----------------------//
 const Row = styled.div`
     height: 40px;
     line-height: 40px;

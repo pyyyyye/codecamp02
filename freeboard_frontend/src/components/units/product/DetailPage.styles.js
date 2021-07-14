@@ -1,7 +1,8 @@
+//=== 게시물 상세페이지 style.js ===
 import styled from '@emotion/styled'
                  // =styled.component
 
-export const Contents = styled.div`
+export const PostContents = styled.div`
     max-width: 1200px;
     width: 100%;
     height: 1602px;
@@ -9,6 +10,7 @@ export const Contents = styled.div`
     margin: 0 auto;
     box-shadow: 0px 0px 6px gray;
     margin-top: 100px;
+    margin-bottom: 80px;
 `
 
 //------ TopContentsWriter Start -------
@@ -20,7 +22,7 @@ export const TopContentsWriter = styled.div`
     display: flex;
     justify-content: space-between;
 `
-    export const WriterProfileImg = styled.div`
+    export const WriterProfileImg = styled.div` 
         width: 48px;
         height: 48px;
         background-image:url('/WriterProfileImg.png');
@@ -96,7 +98,7 @@ export const MiddleContentsPost = styled.div`
 
 
 
-//------ BottomContentsRecommend Start -------
+//--- BottomContentsRecommend Start ----
 export const BottomContentsRecommend = styled.div`
     width:  120px;
     margin: 0 auto;
@@ -136,4 +138,33 @@ export const BottomContentsRecommend = styled.div`
         color: black;
     `
 
+
+//--- EtcContents Start ----
+    export const EtcContents = styled.div`
+        max-width: 1200px;
+        width: 100%;
+        height: 1602px;
+        margin: 0 auto;
+        background-color: orange;
+    `
+    //-- BottomButtons
+    export const BottomButtons = styled.div`
+        width: 406px;
+        height: 45px;
+        background-color: red;
+    `
+    export const GoToListButton = styled.div`
+        width:179px;
+        height:45px;
+        border: 1px solid lightgray;
+    `
+    export const ModifyButton = styled.div`
+        width:179px;
+        height:45px;
+        border: 1px solid lightgray;`
+    export const DeletePostsButton = styled.div`
+        width:179px;
+        height:45px;
+        border: 1px solid lightgray;
+    `
 

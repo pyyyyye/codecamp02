@@ -1,4 +1,4 @@
-// 게시물 등록 화면 
+// 게시물 등록 index.js
 
 import BoardNew from '../../../src/components/units/board/new/BoardNew.container'
 
