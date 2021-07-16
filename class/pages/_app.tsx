@@ -9,6 +9,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   });
 
   const aaa = "";
+  const bbb = "";
 
   return (
     <ApolloProvider client={client}>
