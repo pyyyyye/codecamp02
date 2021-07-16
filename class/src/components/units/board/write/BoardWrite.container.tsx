@@ -3,6 +3,7 @@ import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
 import BoardWriteUI from "./BoardWrite.presenter"
 import { CREATE_BOARD, UPDATE_BOARD} from './BoardWrite.queries'
+import { IMutation, IMutationCreateBoardArgs, IMutationUpdateBoardArgs, IQuery } from '../../../../commons/types/generated/types'
 
 const inputsInit = { //inputsInit = 초기값이라는 뜻
     writer: "",
@@ -10,17 +11,20 @@ const inputsInit = { //inputsInit = 초기값이라는 뜻
     title: "",
     contents:""
 }
-
 interface IProps{
-    isEdit?:boolean //  ?:isEdit있어도 되고 없어도 돼
+    isEdit?: boolean //  ?:isEdit있어도 되고 없어도 돼
                     //  : isEdit있어야돼
+    data?: IQuery //data가 있거나 없거나. 근데 있으면 iquery형태를 갖춤. 
+}
+interface INewInputs {
+    title?: string
+    contents?: string
 }
 
 export default function BoardWrite(props:IProps){
-
     const router = useRouter();
-    const [createBoard]= useMutation( CREATE_BOARD )
-    const [updateBoard]= useMutation(UPDATE_BOARD)
+    const [createBoard]= useMutation<IMutation,IMutationCreateBoardArgs>( CREATE_BOARD )
+    const [updateBoard]= useMutation<IMutation,IMutationUpdateBoardArgs>(UPDATE_BOARD)
     const [active, setActive] = useState(false)//초기값 false (파란색)
     const [inputs, setInputs] = useState(inputsInit) //안의 객체 바꿀 용도.
     // const [aaa, setAaa] = useState<number>(1)
@@ -90,27 +94,33 @@ export default function BoardWrite(props:IProps){
                     // title:inputs.title,
                     // contents:inputs.contents
             })
-            alert(result.data.createBoard._id)
-            router.push(`/detail/${result.data.createBoard._id}`)
+            alert(result.data?.createBoard._id)
+            router.push(`/detail/${result.data?.createBoard._id}`)
         }   catch(error){
                 alert(error)
             }
         }
 
         async function onClickEdit(){  //!---------------------수정하기
+            const newInputs:INewInputs={}
+            if(inputs.title) newInputs.title = inputs.title
+            if(inputs.contents) newInputs.contents = inputs.contents
             try{
                 const result = await updateBoard({
                     variables: {
-                        boardId: router.query.boardId,
+                        boardId: String(router.query.boardId),                  //!--원래 값
                         password:inputs.password,
-                        updateBoardInput: {
-                            title : inputs.title,
-                            contents : inputs.contents
+                        updateBoardInput: {   
+                            title: newInputs.title,
+                            contents: newInputs.contents
+                             //! 수정하면 바뀐 값만 저장됨.
+                            // title : inputs.title,
+                            // contents : inputs.contents
                         }
                     }
                 })
-                alert(result.data.updateBoard._id)
-                router.push(`/detail/${result.data.updateBoard._id}`)
+                alert(result.data?.updateBoard._id)
+                router.push(`/detail/${result.data?.updateBoard._id}`)
             } catch(error){
                 alert(error)
             }
@@ -128,6 +138,7 @@ export default function BoardWrite(props:IProps){
             active={active}
             onClickEdit={onClickEdit}
             isEdit={props.isEdit}
+            data={props.data}
             // aaa={onChangeWriter}
             // bbb={onChangePassword}
             // ccc={onChangeTitle}

@@ -7,7 +7,8 @@ export const CREATE_BOARD = gql`
         createBoard(createBoardInput:$createBoardInput){
             _id
      }
-}`
+}
+`
 
 export const UPDATE_BOARD = gql`
      mutation updateBoard($boardId: ID!, $password:String, $updateBoardInput: UpdateBoardInput!){
