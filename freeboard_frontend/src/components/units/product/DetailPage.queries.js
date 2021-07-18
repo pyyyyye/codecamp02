@@ -6,7 +6,8 @@ export const FETCH_BOARD = gql`
         fetchBoard(boardId:$boardId){
             writer
             title
-            contents          
+            contents   
+            createdAt
         }
     }
 `

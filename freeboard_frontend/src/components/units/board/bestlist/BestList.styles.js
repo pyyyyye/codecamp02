@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { Children } from "react";
 
 export const BestListWrapper = styled.div`
   max-width: 1200px;
@@ -9,7 +8,7 @@ export const BestListWrapper = styled.div`
   margin-bottom: 300px;
 `;
 
-//!================== BestListTop Start ==================!//
+//!▶▶▶▶▶  BestListTop Start  ◀◀◀◀◀!//
 export const BestListTop = styled.div`
   width: 100%;
 `;
@@ -102,7 +101,7 @@ export const RecomCount = styled.p`
   margin: 0;
 `;
 
-//!============= BestListBottom Start ===============!//
+//!▶▶▶▶▶ BestListBottom Start  ◀◀◀◀◀!//
 export const BestListBottom = styled.div`
   width: 100%;
   margin-top: 75px;
@@ -129,7 +128,7 @@ export const SearchIcon = styled.img`
 `;
 export const SearchText = styled.div`
   /* line-height: 50px; */
-  font-size: 14px;
+  font-size: 16px;
   line-height: 18px;
 `;
 
@@ -153,31 +152,38 @@ export const SearchButtonBox = styled.button`
   border: 0px;
 `;
 
-//!================== LIST Start ==================!//
+//!▶▶▶▶▶  List Start  ◀◀◀◀◀!//
 export const PostListsBox = styled.div`
   width: 100%;
   margin-top: 40px;
   border-top: 1px solid black;
   border-bottom: 1px solid black;
 `;
-export const Row = styled.div`
+export const Categorize = styled.div`
   height: 52px;
   line-height: 54px;
   border-bottom: 1px solid lightgray;
   display: flex;
   justify-content: space-between;
 `;
-export const ColumnTop = styled.div`
+export const CategorizeTop = styled.div`
   width: 150px;
   font-weight: 600;
   text-align: center;
+  /* background-color: ${(props) => (props.aaa ? "lemonchiffon" : "white")}; */
 `;
-export const ColumnTopTitle = styled.div`
+export const CategorizeTopTitle = styled.div`
   width: 750px;
   font-weight: 600;
   text-align: center;
+  /* background-color: ${(props) => (props.aaa ? "yellow" : "white")}; */
 `;
-export const Column2 = styled.div``;
+
+export const CategorizeBottom = styled.div`
+  background-color: lemonchiffon;
+`;
+
+//! ▶▶▶▶▶  ListFooter Start  ◀◀◀◀◀!//
 export const ListFooter = styled.div`
   width: 100%;
   height: 50px;
@@ -213,4 +219,5 @@ export const UploadButton = styled.button`
   float: right;
   border-radius: 10px;
   font-size: 16px;
+  margin-top: -22px;
 `;

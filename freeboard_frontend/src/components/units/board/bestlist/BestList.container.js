@@ -1,20 +1,28 @@
 //베스트 게시글 화면 container.js
-import { useQuery} from '@apollo/client'
-import {FETCH_BOARDS} from './BestList.queries'
-import ListPageUI from './BestList.presenter'
-// import { getDate } from '.src/commons/libraries/utils.js'  날짜표시
+import { useQuery } from "@apollo/client";
+import { FETCH_BOARDS } from "./BestList.queries";
+import ListPageUI from "./BestList.presenter";
+import { useRouter } from "next/router";
 
-export default function ListPage(props){
-    const { data } = useQuery(FETCH_BOARDS)
-    
-    const onClickUpload =()=>{}
+export default function ListPage() {
+  const { data } = useQuery(FETCH_BOARDS);
+  const router = useRouter();
 
-    return(  //props로 담는 부분
-        <ListPageUI
-            onClickUpload={onClickUpload}
-            data={data}
-        />
+  function onClickTitle(event) {
+    console.log(event.target);
+    router.push(`/board/detail/${event.target.id}`);
+  }
 
-    )
+  function onClickUpload(event) {
+    router.push(`/board/new/${event.target.id}`);
+  }
 
+  return (
+    //props로 담는 부분
+    <ListPageUI
+      onClickUpload={onClickUpload}
+      data={data}
+      onClickTitle={onClickTitle}
+    />
+  );
 }

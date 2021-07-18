@@ -24,10 +24,9 @@ import {
   SearchIcon,
   SearchText,
   PostListsBox,
-  Row,
-  ColumnTop,
-  ColumnTopTitle,
-  Column2,
+  Categorize,
+  CategorizeTop,
+  CategorizeTopTitle,
   ListFooter,
   MoveToPage,
   GoToPrev,
@@ -37,15 +36,13 @@ import {
 } from "./BestList.styles";
 import { getDate } from "../../../../commons/libraries/utils";
 
-export default function ListPageUI({ onClickUpload, data }) {
+export default function ListPageUI({onClickTitle, onClickUpload, data }) {
   return (
     <>
       <BestListWrapper>
-        {/*====상단 시작===BestListTop Start====*/}
         <BestListTop>
           <BestPostsTitle>베스트 게시글</BestPostsTitle>
-
-          {/* ===== BestPosts 상단 게시글 모음 ==== */}
+          {/* //!▶▶▶▶▶▶  BestListTop  Start ◀◀◀◀◀!// */}
           <BestPostsBox>
             {new Array(4).fill(1).map(() => (
               <BestPosts>
@@ -74,8 +71,7 @@ export default function ListPageUI({ onClickUpload, data }) {
             ))}
           </BestPostsBox>
         </BestListTop>
-
-        {/*====하단 시작===BestListBottom Start====*/}
+        {/* //!▶▶▶▶▶▶  Search Start  ◀◀◀◀◀!// */}
         <BestListBottom>
           <BestListBottomSearch>
             <SearchBox>
@@ -85,25 +81,26 @@ export default function ListPageUI({ onClickUpload, data }) {
             <SearchDateBox>YYYY.MM.DD ~ YYYY.MM.DD</SearchDateBox>
             <SearchButtonBox>검색하기</SearchButtonBox>
           </BestListBottomSearch>
-
-          {/* == 게시글 목록 PostsList Start == */}
+          {/* //!▶▶▶▶▶  list Start  ◀◀◀◀◀!// */}
           <PostListsBox>
-            <Row>
-              <ColumnTop>번호</ColumnTop>
-              <ColumnTopTitle>제목</ColumnTopTitle>
-              <ColumnTop>작성자</ColumnTop>
-              <ColumnTop>날짜</ColumnTop>
-            </Row>
+            <Categorize>
+              <CategorizeTop aaa={true}>번호</CategorizeTop>
+              <CategorizeTopTitle aaa={true} >제목</CategorizeTopTitle>
+              <CategorizeTop aaa={true}>작성자</CategorizeTop>
+              <CategorizeTop aaa={true}>작성일</CategorizeTop>
+            </Categorize>
 
             {data?.fetchBoards.map((data, index) => (
-              <Row key={data._id}>
-                <Column2>{index + 1}</Column2>
-                <Column2>{data.writer}</Column2>
-                <Column2>{data.title}</Column2>
-                <Column2>{getDate(data.createdAt)}</Column2>
-              </Row>
+              <Categorize key={data._id}>
+                <CategorizeTop>{index + 1}</CategorizeTop>
+                <CategorizeTopTitle id={data?._id} onClick={onClickTitle}>{data.title} </CategorizeTopTitle>
+                <CategorizeTop>{data.writer}</CategorizeTop>
+                <CategorizeTop>{getDate(data.createdAt)}</CategorizeTop>
+              </Categorize>
             ))}
           </PostListsBox>
+
+          {/* //!▶▶▶▶▶  ListFooter Start  ◀◀◀◀◀// */}
           <ListFooter>
             <MoveToPage>
               <GoToPrev src="/icon_prev.png" alt="이전 페이지로" />
@@ -111,10 +108,11 @@ export default function ListPageUI({ onClickUpload, data }) {
               <PageNum>2</PageNum>
               <GoToNext src="/icon_next.png" alt="다음 페이지로" />
             </MoveToPage>
-            <UploadButton onClick={onClickUpload}>게시물 등록하기</UploadButton>
+            <UploadButton id={data?._id} onClick={onClickUpload}>
+              게시물 등록하기
+            </UploadButton>
           </ListFooter>
         </BestListBottom>
-        {/*====하단 끝===BestListBottom End====*/}
       </BestListWrapper>
     </>
   );
