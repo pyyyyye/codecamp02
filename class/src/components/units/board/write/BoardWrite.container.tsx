@@ -38,7 +38,7 @@ export default function BoardWrite(props: IProps) {
   const [active, setActive] = useState(false); // 초기값 false (파란색)
   const [inputs, setInputs] = useState(inputsInit); // 안의 객체 바꿀 용도.
   // const [aaa, setAaa] = useState<number>(1)
-  // setAaa('호두자두')
+  // setAaa('호두자두')b
 
   // const [writer, setWriter] = useState('') //글쓴이
   // const [password, setPassword]= useState('') //비번

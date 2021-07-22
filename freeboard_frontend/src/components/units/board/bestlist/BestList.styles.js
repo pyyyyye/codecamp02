@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 export const BestListWrapper = styled.div`
   max-width: 1200px;
@@ -170,13 +170,13 @@ export const CategorizeTop = styled.div`
   width: 150px;
   font-weight: 600;
   text-align: center;
-  /* background-color: ${(props) => (props.aaa ? "lemonchiffon" : "white")}; */
+  /* background-color: ${(props) => (props.aaa ? 'lemonchiffon' : 'white')}; */
 `;
 export const CategorizeTopTitle = styled.div`
   width: 750px;
   font-weight: 600;
   text-align: center;
-  /* background-color: ${(props) => (props.aaa ? "yellow" : "white")}; */
+  /* background-color: ${(props) => (props.aaa ? 'yellow' : 'white')}; */
 `;
 
 export const CategorizeBottom = styled.div`
@@ -220,4 +220,5 @@ export const UploadButton = styled.button`
   border-radius: 10px;
   font-size: 16px;
   margin-top: -22px;
+  cursor: pointer;
 `;
