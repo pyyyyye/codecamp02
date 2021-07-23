@@ -1,6 +1,6 @@
 export interface IDetailPageUIProps {
   onClickMoveToList: () => void;
-  //   onClickMoveToEdit: () => void;
+  onClickMoveToEdit: () => void;
   //   onClickDelete: () => void;
   //   onDetail: () => void;
 

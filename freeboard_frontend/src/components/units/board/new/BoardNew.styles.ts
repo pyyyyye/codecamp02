@@ -90,6 +90,7 @@ export const AddressButton = styled.button`
   height: 52px;
   background-color: black;
   color: white;
+  cursor: pointer;
 `;
 
 export const AddressInput = styled.input`
@@ -118,6 +119,7 @@ export const SmallBox = styled.label`
   background-color: #bdbdbd;
   text-align: center;
   padding-top: 18px;
+  cursor: pointer;
 `;
 
 export const LoadButton = styled.input`
@@ -145,4 +147,5 @@ export const ButtonBox = styled.button`
   /* border: 1px solid lightgray; */
   display: block;
   margin: 50px auto 0;
+  cursor: pointer;
 `;

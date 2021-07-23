@@ -27,11 +27,10 @@ import {
 
 interface NewPageUIProps {
   isEdit: boolean;
-  inputsErrors: 
-  onChangeInputs: ( event: any) => void;
+  active: boolean;
+  inputsErrors: String;
+  onChangeInputs: (event: any) => void;
   onClickSubmit: () => void;
-
-  active:boolean;
 }
 
 export default function NewPageUI(props: NewPageUIProps) {
@@ -95,7 +94,10 @@ export default function NewPageUI(props: NewPageUIProps) {
 
         <LongInput>
           <Categorize>유튜브</Categorize>
-          <InputBox placeholder="링크를 복사해주세요." />
+          <InputBox
+            placeholder="링크를 복사해주세요."
+            onChange={props.onChangeInputs}
+          />
         </LongInput>
 
         <PhotoBox>
@@ -134,7 +136,7 @@ export default function NewPageUI(props: NewPageUIProps) {
           onClick={props.onClickSubmit}
           active={props.active}
         >
-          등록하기
+          {props.isEdit ? '게시판 수정' : '게시판 등록'}
         </ButtonBox>
       </Contents>
     </Wrapper>

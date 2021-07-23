@@ -2,6 +2,7 @@
 import BoardCommentUI from './BoardComment.presenter';
 import { useMutation, useQuery } from '@apollo/client';
 import { BOARD_COMMENT, FETCHBOARD_COMMENT_LIST } from './BoardComment.queries';
+// import { FETCH_BOARD } from '../../../units/product/DetailPage.queries';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 
@@ -30,6 +31,7 @@ export default function BoardComment() {
           },
           boardId: router.query.detailpages,
         },
+        // refetchQueries: {},
       });
       console.log('돼라 좀 떴다!');
     } catch (error) {

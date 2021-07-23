@@ -1,11 +1,17 @@
 //=== 게시물 상세페이지 style.js ===
 import styled from '@emotion/styled';
+import ReactPlayer from 'react-player';
 // =styled.component
+
+export const Wrapper = styled.div`
+  width: 100%;
+  border-bottom: 1px solid #bdbdbd;
+`;
 
 export const PostContents = styled.div`
   max-width: 1200px;
   width: 100%;
-  height: 1602px;
+  /* height: 1602px; */
   padding: 20px 100px 0px 100px;
   margin: 0 auto;
   box-shadow: 0px 0px 6px gray;
@@ -83,11 +89,13 @@ export const ContentsText = styled.p`
   line-height: 23.68px;
   margin: 40px 0px 120px 0px;
 `;
-export const ContentsVideo = styled.div`
+export const ContentsVideo = styled(ReactPlayer)`
   width: 486px;
-  height: 240px;
+  height: 290px;
   background-image: url(/video.png);
+  background-repeat: no-repeat;
   margin: 0 auto;
+  filter: drop-shadow(0 5px 20px rgba(0, 0, 0, 0.2));
 `;
 
 //--- BottomContentsRecommend Start ----
@@ -97,6 +105,7 @@ export const BottomContentsRecommend = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 163px;
+  padding-bottom: 80px;
 `;
 export const Recommendations = styled.div`
   width: 40px;
@@ -131,19 +140,22 @@ export const DecomCount = styled.p`
 `;
 
 //--- EtcContents Start ----
-export const EtcContents = styled.div`
-  max-width: 500px;
-  width: 100%;
-  margin: 0 auto;
-  background-color: orange;
-  margin-bottom: 500px;
-`;
+// export const EtcContents = styled.div`
+//   width: 380px;
+//   height:
+//   margin: 0 auto;
+//   background-color: orange;
+//   margin-bottom: 87px;
+//   border-bottom: 1px solid #bdbdbd;
+// `;
 //-- BottomButtons
 export const BottomButtons = styled.div`
-  width: 406px;
+  width: 586px;
   height: 45px;
+  margin: 0 auto;
   display: flex;
-  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 87px;
 `;
 export const GoToButton = styled.div`
   width: 179px;
@@ -153,4 +165,5 @@ export const GoToButton = styled.div`
   line-height: 45px;
   font-size: 16px;
   font-weight: 400;
+  cursor: pointer;
 `;

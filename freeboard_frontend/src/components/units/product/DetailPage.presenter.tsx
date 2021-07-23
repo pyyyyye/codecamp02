@@ -1,5 +1,6 @@
 //=== 게시물 상세페이지 presenter.js ===
 import {
+  Wrapper,
   PostContents,
   TopContentsWriter,
   WriterProfileImg,
@@ -20,7 +21,7 @@ import {
   DecomCount,
   LinkIcon,
   MapIcon,
-  EtcContents,
+  // EtcContents,
   BottomButtons,
   GoToButton,
 } from './DetailPage.styles';
@@ -29,7 +30,7 @@ import { IDetailPageUIProps } from './DetailPage.types';
 
 export default function DetailPageUI(props: IDetailPageUIProps) {
   return (
-    <>
+    <Wrapper>
       {/*//! == 상세페이지 게시물 영역 == !*/}
       <PostContents>
         {/*----- TopContentsWriter Start -----*/}
@@ -53,19 +54,22 @@ export default function DetailPageUI(props: IDetailPageUIProps) {
           <ContentsImage src="/detailpageImage.png" />
           <ContentsText>{props.data?.fetchBoard.contents}</ContentsText>
 
-          <ContentsVideo></ContentsVideo>
+          <ContentsVideo
+            url={props.data?.fetchBoard.youtubeUrl}
+            width="400px"
+            height="300px"
+            playing={true}
+            muted={true}
+          />
         </MiddleContentsPost>
 
         {/*//!--- BottomContentsRecommend Start ---*/}
         <BottomContentsRecommend>
           <Recommendations>
-            {' '}
-            {/* 추천 */}
             <RecomImage src="/recom.png" />
             <RecomCount>1920</RecomCount>
           </Recommendations>
           <Recommendations>
-            {/* 비추천 */}
             <DecomImage src="/decom.png" />
             <DecomCount>1920</DecomCount>
           </Recommendations>
@@ -73,18 +77,16 @@ export default function DetailPageUI(props: IDetailPageUIProps) {
       </PostContents>
 
       {/*//! == 게시글 외 하단 기타 컨텐츠 시작 == */}
-      <EtcContents>
-        <BottomButtons>
-          {/* -- '목록으로' 버튼 -- */}
-          <GoToButton onClick={props.onClickMoveToList}>목록으로</GoToButton>
+      <BottomButtons>
+        {/* -- '목록으로' 버튼 -- */}
+        <GoToButton onClick={props.onClickMoveToList}>목록으로</GoToButton>
 
-          {/* -- '수정하기' 버튼 -- */}
-          <GoToButton onClick={props.onClickMoveToEdit}>수정하기</GoToButton>
+        {/* -- '수정하기' 버튼 -- */}
+        <GoToButton onClick={props.onClickMoveToEdit}>수정하기</GoToButton>
 
-          {/* -- '삭제하기' 버튼 -- */}
-          <GoToButton onClick={props.onClickMoveToList}>삭제하기</GoToButton>
-        </BottomButtons>
-      </EtcContents>
-    </>
+        {/* -- '삭제하기' 버튼 -- */}
+        <GoToButton onClick={props.onClickMoveToDelete}>삭제하기</GoToButton>
+      </BottomButtons>
+    </Wrapper>
   );
 }

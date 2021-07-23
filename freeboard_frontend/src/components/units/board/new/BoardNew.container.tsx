@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { useRouter } from 'next/router';
-import { CREATE_BOARD } from './BoardNew.queries';
+import { CREATE_BOARD, UPDATE_BOARD } from './BoardNew.queries';
 import NewPageUI from './BoardNew.presenter';
 
 export const INPUT_INIT = {
@@ -10,10 +10,20 @@ export const INPUT_INIT = {
   password: '',
   title: '',
   contents: '',
+  youtubeUrl: '',
 };
-export default function NewPage() {
+interface Iprops {
+  isEdit?: boolean;
+}
+interface INewInputs {
+  title?: string;
+  contents?: string;
+}
+
+export default function NewPage(props: IProps) {
   const router = useRouter();
   const [createBoardMutation] = useMutation(CREATE_BOARD);
+  const [updateBoard] = useMutation(UPDATE_BOARD);
   const [inputs, setInputs] = useState(INPUT_INIT);
   const [inputsErrors, setInputsErrors] = useState(INPUT_INIT);
 
@@ -38,6 +48,7 @@ export default function NewPage() {
       password: inputs.password ? '' : '비밀번호를 입력해주세요.',
       title: inputs.title ? '' : '제목을 입력해주세요.',
       contents: inputs.contents ? '' : '내용을 입력해주세요',
+      youtubeUrl: inputs.youtubeUrl ? '' : '',
     });
     //!----- error 실행 시작-----//
     const isEvery = Object.values(inputs).every((data) => data);
@@ -59,11 +70,35 @@ export default function NewPage() {
     }
   }
 
+  async function onClickEdit() {
+    //!---------------- 수정하기
+    const newInput: INewInputs = {};
+    if (inputs.title) newInput.title = inputs.title;
+    if (inputs.contents) newInput.contents = inputs.contents;
+    try {
+      const result = await updateBoard({
+        variables: {
+          boardId: String(router.query.detailpages),
+          password: inputs.password,
+          updateBoardInput: {
+            title: newInput.title,
+            contents: newInput.contents,
+          },
+        },
+      });
+      router.push(`/detail/${result.data?.updateBoard._id}`);
+    } catch (error) {
+      alert(error);
+    }
+  }
+
   return (
     <NewPageUI //!-----------props로 담는 구간
       onChangeInputs={onChangeInputs}
       onClickSubmit={onClickSubmit}
+      onClickEdit={onClickEdit}
       active={active}
+      isEdit={props.isEdit}
       inputsErrors={inputsErrors}
     />
   );

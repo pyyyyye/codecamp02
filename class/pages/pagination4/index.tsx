@@ -5,8 +5,8 @@ import { useState } from 'react';
 import styled from '@emotion/styled';
 
 const FETCH_BOARDS = gql`
-  query fetchBoards($aaa: Int) {
-    fetchBoards(page: $aaa) {
+  query fetchBoards($onClickPageRefetch: Int) {
+    fetchBoards(page: $onClickPageRefetch) {
       _id
       writer
       title
@@ -30,12 +30,12 @@ const Page = styled.span`
 export default function PaginationPage() {
   const [startPage, setStartPage] = useState(1);
   const { data, refetch } = useQuery<IQuery>(FETCH_BOARDS, {
-    variables: { aaa: startPage },
+    variables: { onClickPageRefetch: startPage },
   });
   const { data: dataBoardCount } = useQuery<IQuery>(FETCH_BOARDS_COUNT);
   const lastPage = Math.ceil(Number(dataBoardCount?.fetchBoardsCount) / 10);
   function onClickPage(event: MouseEventHandler<HTMLSpanElement>) {
-    refetch({ aaa: Number(event.target.id as Element) });
+    refetch({ onClickPageRefetch: Number(event.target.id as Element) });
   }
   function onClickPrevPage() {
     if (startPage <= 1) return; // -------------- 이전버튼 1페이지 이전 마이너스로 떨어지지 않게 return
