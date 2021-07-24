@@ -37,6 +37,7 @@ export const BestPosts = styled.div`
   flex-direction: column;
   justify-content: space-around;
   padding-top: 0px;
+  cursor: pointer;
 `;
 export const BestPostsPhoto = styled.img``;
 export const TitleInBestPosts = styled.div`
@@ -119,6 +120,7 @@ export const SearchBox = styled.div`
   display: flex;
   justify-content: left;
   padding: 18px;
+  cursor: pointer;
 `;
 export const SearchIcon = styled.img`
   width: 18px;
@@ -140,6 +142,7 @@ export const SearchDateBox = styled.div`
   line-height: 52px;
   font-weight: 16px;
   text-align: center;
+  cursor: pointer;
 `;
 export const SearchButtonBox = styled.button`
   width: 94px;
@@ -150,6 +153,7 @@ export const SearchButtonBox = styled.button`
   font-weight: 500;
   font-size: 16px;
   border: 0px;
+  cursor: pointer;
 `;
 
 //!▶▶▶▶▶  List Start  ◀◀◀◀◀!//

@@ -6,80 +6,123 @@ export const BoardCommentWrapper = styled.div`
   margin: 0 auto;
   margin-top: 50px;
   margin-bottom: 300px;
-  background-color: lemonchiffon;
 `;
 export const CommentTitle = styled.div`
   width: 100px;
   height: 30px;
-  border: 2px solid red;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 26px;
 `;
 export const CommentUpload = styled.div`
   width: 100%;
-  border: 1px solid blue;
+  margin-top: 40px;
 `;
 export const CommentUploadTop = styled.div`
   width: 100%;
-  background-color: pink;
 `;
 export const WriterInput = styled.input`
   width: 180px;
   height: 52px;
   border: 1px solid lightgray;
+  padding: 20px;
 `;
 export const WriterPwInput = styled.input`
   width: 180px;
   height: 52px;
   border: 1px solid lightgray;
+  padding: 20px;
+  margin-left: 24px;
 `;
+export const Rate = styled.div``;
 export const CommentUploadBottom = styled.div`
-  width: 100%100px;
-  border: 1px solid black;
+  width: 100%;
+  height: 161px;
+  margin-top: 20px;
+  border: 1px solid lightgray;
+  position: relative;
 `;
 export const CommentInput = styled.textarea`
   width: 100%;
-  height: 161px;
+  height: 108px;
+  padding: 20px;
+  border: none;
+  border-bottom: 1px solid gainsboro;
 `;
 export const UploadButton = styled.button`
   width: 91px;
   height: 52px;
   background-color: black;
   color: #fff;
+  cursor: pointer;
+  border: none;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 `;
 
 //!=========== CommentList 댓글 하단 리스트 ===========//
 export const CommentList = styled.div`
   margin-top: 50px;
   width: 100%;
-  background-color: lightgreen;
 `;
 export const CommentListUp = styled.div`
   width: 100%;
-  height: 180px;
-  border: 1px solid lightgray;
+  height: 130px;
   padding: 20px;
-  border-bottom: 1px solid red;
+  border-bottom: 1px solid #bdbdbd;
+  display: flex;
 `;
 export const CommentListLeft = styled.div`
   width: 40px;
-  background-color: darkblue;
-  border-radius: 15px;
-  color: yellow;
-  text-align: center;
+  height: 40px;
+  background-image: url('/WriterProfileImg.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  margin-right: 16px;
 `;
 export const CommentListRight = styled.div`
   width: 800px;
-  border: 1px solid blue;
+  display: flex;
+  flex-direction: column;
 `;
+export const CommentListTop = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+`;
+
 export const WriterName = styled.div`
-  color: red;
+  color: #000;
   font-weight: 600;
-  background-color: lightskyblue;
+  font-size: 16px;
+  line-height: 23.68px;
 `;
+export const CommentToEdit = styled.div`
+  width: 50px;
+  /* display: flex;
+  justify-content: space-between; */
+`;
+// export const Button_Edit = styled.div`
+//   width: 15px;
+//   height: 15px;
+//   background-image: url('/icon_post.png');
+// `;
+// export const Button_delete = styled.div`
+//   width: 15px;
+//   height: 15px;
+//   background-image: url('/icon_delete.png');
+// `;
+
 export const CommentNote = styled.div`
-  color: darkgrey;
-  background-color: lightgoldenrodyellow;
+  color: #4f4f4f;
+  font-size: 16px;
+  line-height: 23.68px;
+  font-weight: 400;
 `;
 export const CommentDate = styled.div`
-  color: lightgray;
-  background-color: purple;
+  color: #bdbdbd;
+  font-size: 12px;
+  line-height: 17.76px;
+  font-weight: 400;
 `;

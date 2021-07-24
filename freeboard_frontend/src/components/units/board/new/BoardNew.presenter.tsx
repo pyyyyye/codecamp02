@@ -24,14 +24,20 @@ import {
   LoadButton,
   ErrorM,
 } from './BoardNew.styles';
+import { Modal } from 'antd';
+import DaumPostcode from 'react-daum-postcode';
 
 interface NewPageUIProps {
   isEdit: boolean;
-  inputsErrors: 
-  onChangeInputs: ( event: any) => void;
+  isOpen: boolean;
+  active: boolean;
+  inputsErrors: String;
+  address: string;
+  zoneCode: string;
+  onChangeInputs: (event: any) => void;
   onClickSubmit: () => void;
-
-  active:boolean;
+  onClickOpenModal: () => void;
+  onComplete: () => void;
 }
 
 export default function NewPageUI(props: NewPageUIProps) {
@@ -87,15 +93,26 @@ export default function NewPageUI(props: NewPageUIProps) {
 
         <AddressBox>
           <Categorize>주소</Categorize>
-          <AddressNumInput placeholder="06392" />
-          <AddressButton onclick="">우편번호 검색</AddressButton>
-          <AddressInput placeholder="시, 군, 구" />
-          <AddressInput placeholder="상세주소를 입력하세요." />
+          {props.isOpen && (
+            <Modal title="주소 검색하기" visible={true}>
+              <DaumPostcode onComplete={props.onComplete} autoClose animation />
+            </Modal>
+          )}
+          <AddressNumInput placeholder="우편번호" />
+          <AddressButton onClick={props.onClickOpenModal}>
+            주소 검색
+          </AddressButton>
+          <AddressInput value={props.address} readOnly />
+          <AddressInput value={props.zoneCode} readOnly />
         </AddressBox>
 
         <LongInput>
           <Categorize>유튜브</Categorize>
-          <InputBox placeholder="링크를 복사해주세요." />
+          <InputBox
+            name="youtubeUrl"
+            placeholder="링크를 복사해주세요."
+            onChange={props.onChangeInputs}
+          />
         </LongInput>
 
         <PhotoBox>
@@ -134,7 +151,7 @@ export default function NewPageUI(props: NewPageUIProps) {
           onClick={props.onClickSubmit}
           active={props.active}
         >
-          등록하기
+          {props.isEdit ? '게시판 수정' : '게시판 등록'}
         </ButtonBox>
       </Contents>
     </Wrapper>
