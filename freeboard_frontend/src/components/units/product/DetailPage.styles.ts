@@ -92,9 +92,10 @@ export const ContentsText = styled.p`
 export const ContentsVideo = styled(ReactPlayer)`
   width: 486px;
   height: 290px;
-  background-image: url(/video.png);
+  /* background-image: url(/video.png); */
   background-repeat: no-repeat;
   margin: 0 auto;
+
   filter: drop-shadow(0 5px 20px rgba(0, 0, 0, 0.2));
 `;
 

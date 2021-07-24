@@ -4,6 +4,7 @@ import { useMutation } from '@apollo/client';
 import { useRouter } from 'next/router';
 import { CREATE_BOARD, UPDATE_BOARD } from './BoardNew.queries';
 import NewPageUI from './BoardNew.presenter';
+// import { Modal } from 'antd';
 
 export const INPUT_INIT = {
   writer: '',
@@ -26,6 +27,9 @@ export default function NewPage(props: IProps) {
   const [updateBoard] = useMutation(UPDATE_BOARD);
   const [inputs, setInputs] = useState(INPUT_INIT);
   const [inputsErrors, setInputsErrors] = useState(INPUT_INIT);
+  const [isOpen, setIsOpen] = useState(false);
+  const [address, setAddress] = useState('');
+  const [zoneCode, setZoneCode] = useState('');
 
   //!▶▶▶▶▶ id.pw.title.contents 빈칸 ◀◀◀◀◀◀//
   const [active, setActive] = useState(false); //버튼 초기값.false(옅은노랑)
@@ -39,6 +43,16 @@ export default function NewPage(props: IProps) {
     setInputs(newInput);
     setActive(Object.values(newInput).every((data) => data));
     setInputsErrors({ ...inputsErrors, [event.target.name]: '' });
+  }
+
+  //!▶▶▶▶▶ 주소입력 ◀◀◀◀◀◀//
+  function onComplete(data: any) {
+    setAddress(data.address);
+    setZoneCode(data.zonecode);
+    setIsOpen(false);
+  }
+  function onClickOpenModal() {
+    setIsOpen(true);
   }
 
   //!▶▶▶▶▶  ERROR Start ◀◀◀◀◀◀//
@@ -97,9 +111,14 @@ export default function NewPage(props: IProps) {
       onChangeInputs={onChangeInputs}
       onClickSubmit={onClickSubmit}
       onClickEdit={onClickEdit}
+      onClickOpenModal={onClickOpenModal}
+      onComplete={onComplete}
       active={active}
       isEdit={props.isEdit}
       inputsErrors={inputsErrors}
+      isOpen={isOpen}
+      address={address}
+      zoneCode={zoneCode}
     />
   );
 }

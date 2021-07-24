@@ -11,7 +11,7 @@ const desc = ['terrible', 'bad', 'normal', 'good', 'wonderful'];
 export default function Libraries2Page() {
   function onChangeStar(value) {
     // state에 넣어 사용해봐
-    console.log(value);
+    // console.log(value);
   }
 
   return (

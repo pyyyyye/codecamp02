@@ -34,6 +34,7 @@ export const WriterPwInput = styled.input`
   padding: 20px;
   margin-left: 24px;
 `;
+export const Rate = styled.div``;
 export const CommentUploadBottom = styled.div`
   width: 100%;
   height: 161px;

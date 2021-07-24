@@ -60,6 +60,7 @@ export default function DetailPageUI(props: IDetailPageUIProps) {
             height="300px"
             playing={true}
             muted={true}
+            controls={true}
           />
         </MiddleContentsPost>
 

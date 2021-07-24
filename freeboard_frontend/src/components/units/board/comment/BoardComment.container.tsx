@@ -1,10 +1,12 @@
 //게시글 댓글 화면 container.js
 import BoardCommentUI from './BoardComment.presenter';
 import { useMutation, useQuery } from '@apollo/client';
+// import { FETCH_BOARD } from '../../product/DetailPage.queries';
 import { BOARD_COMMENT, FETCHBOARD_COMMENT_LIST } from './BoardComment.queries';
 // import { FETCH_BOARD } from '../../../units/product/DetailPage.queries';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import { Rate } from 'antd';
 
 export const onChangeContentsInput = {
   writer: '',
@@ -31,7 +33,14 @@ export default function BoardComment() {
           },
           boardId: router.query.detailpages,
         },
-        // refetchQueries: {},
+        refetchQueries: [
+          {
+            query: FETCHBOARD_COMMENT_LIST,
+            variables: {
+              boardId: router.query.detailpages,
+            },
+          },
+        ],
       });
       console.log('돼라 좀 떴다!');
     } catch (error) {
@@ -49,9 +58,13 @@ export default function BoardComment() {
     console.log(event.target.name);
   }
 
+  // !----------------- Rating ------------
+  function onChangeStar(event: any) {}
+
   return (
     <BoardCommentUI
       onChangeInput={onChangeInput}
+      onChangeStar={onChangeStar}
       onClick={onClick}
       data={data}
     />

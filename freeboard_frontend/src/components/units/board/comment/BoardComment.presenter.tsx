@@ -17,13 +17,18 @@ import {
   WriterName,
   CommentNote,
   CommentDate,
+  Rate,
   // CommentToEdit,
   // Button_Edit,
   // Button_delete,
 } from './BoardComment.styles';
 import { getDate } from '../../../../commons/libraries/utils';
+// ! ----------- Rating -----------
+const starScore = ['1', '2', '3', '4', '5'];
 
 export default function BoardCommentUI(props: any) {
+  function onChangeStar(value) {}
+
   return (
     <BoardCommentWrapper>
       <CommentTitle>댓글</CommentTitle>
@@ -41,6 +46,7 @@ export default function BoardCommentUI(props: any) {
             type="password"
             placeholder="비밀번호"
           />
+          <Rate name="rating" tooltips={starScore} onChange={onChangeStar} />
         </CommentUploadTop>
         {/* //!----- 댓글 입력 및 등록 창 ------ */}
         <CommentUploadBottom>
