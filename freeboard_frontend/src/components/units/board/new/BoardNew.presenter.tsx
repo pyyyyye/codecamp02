@@ -98,12 +98,15 @@ export default function NewPageUI(props: NewPageUIProps) {
               <DaumPostcode onComplete={props.onComplete} autoClose animation />
             </Modal>
           )}
-          <AddressNumInput placeholder="우편번호" />
+          <AddressNumInput placeholder="우편번호" value={props.zipcode} />
           <AddressButton onClick={props.onClickOpenModal}>
             주소 검색
           </AddressButton>
-          <AddressInput value={props.address} readOnly />
-          <AddressInput value={props.zoneCode} readOnly />
+          <AddressInput value={props.address} />
+          <AddressInput
+            onChange={props.onChangeAddressDetail}
+            placeholder="상세주소를 입력하세요"
+          />
         </AddressBox>
 
         <LongInput>

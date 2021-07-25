@@ -1,17 +1,19 @@
+import { Rate } from 'antd';
 import styled from '@emotion/styled';
 
 export const BoardCommentWrapper = styled.div`
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
-  margin-top: 50px;
+  padding-top: 50px;
   margin-bottom: 300px;
+  border-top: 1px solid #bdbdbd;
 `;
 export const CommentTitle = styled.div`
   width: 100px;
   height: 30px;
   font-size: 18px;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 26px;
 `;
 export const CommentUpload = styled.div`
@@ -34,7 +36,9 @@ export const WriterPwInput = styled.input`
   padding: 20px;
   margin-left: 24px;
 `;
-export const Rate = styled.div``;
+export const Rate1 = styled(Rate)`
+  margin-left: 20px;
+`;
 export const CommentUploadBottom = styled.div`
   width: 100%;
   height: 161px;
@@ -85,11 +89,12 @@ export const CommentListRight = styled.div`
   width: 800px;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
 `;
 export const CommentListTop = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: space-between;
+  /* display: flex;
+  justify-content: space-between; */
 `;
 
 export const WriterName = styled.div`
@@ -98,6 +103,13 @@ export const WriterName = styled.div`
   font-size: 16px;
   line-height: 23.68px;
 `;
+export const Rate2 = styled(Rate)`
+  margin-left: 20px;
+`;
+// export const CommentRating = styled.div`
+//   border: 1px solid red;
+// `;
+
 export const CommentToEdit = styled.div`
   width: 50px;
   /* display: flex;
@@ -125,4 +137,5 @@ export const CommentDate = styled.div`
   font-size: 12px;
   line-height: 17.76px;
   font-weight: 400;
+  margin-top: 15px;
 `;

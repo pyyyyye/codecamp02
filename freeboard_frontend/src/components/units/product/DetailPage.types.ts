@@ -3,7 +3,7 @@ export interface IDetailPageUIProps {
   onClickMoveToEdit: () => void;
   //   onClickDelete: () => void;
   //   onDetail: () => void;
-
+  placement: string;
   isEdit?: boolean;
   data: any;
 }

@@ -28,12 +28,16 @@ export default function NewPage(props: IProps) {
   const [inputs, setInputs] = useState(INPUT_INIT);
   const [inputsErrors, setInputsErrors] = useState(INPUT_INIT);
   const [isOpen, setIsOpen] = useState(false);
+  const [zipcode, setZipcode] = useState('');
   const [address, setAddress] = useState('');
-  const [zoneCode, setZoneCode] = useState('');
+  const [addressDetail, setAddressDetail] = useState('');
 
   //!▶▶▶▶▶ id.pw.title.contents 빈칸 ◀◀◀◀◀◀//
   const [active, setActive] = useState(false); //버튼 초기값.false(옅은노랑)
 
+  function onChangeAddressDetail(event: any) {
+    setAddressDetail(event?.target.value);
+  }
   function onChangeInputs(event: any) {
     //값이 모두 채워지면 true로 바뀜.
     const newInput = {
@@ -48,7 +52,7 @@ export default function NewPage(props: IProps) {
   //!▶▶▶▶▶ 주소입력 ◀◀◀◀◀◀//
   function onComplete(data: any) {
     setAddress(data.address);
-    setZoneCode(data.zonecode);
+    setZipcode(data.zonecode);
     setIsOpen(false);
   }
   function onClickOpenModal() {
@@ -72,6 +76,11 @@ export default function NewPage(props: IProps) {
           variables: {
             createBoardInput: {
               ...inputs,
+              boardAddress: {
+                zipcode,
+                address,
+                addressDetail,
+              },
             },
           },
         });
@@ -118,7 +127,8 @@ export default function NewPage(props: IProps) {
       inputsErrors={inputsErrors}
       isOpen={isOpen}
       address={address}
-      zoneCode={zoneCode}
+      zipcode={zipcode}
+      onChangeAddressDetail={onChangeAddressDetail}
     />
   );
 }
