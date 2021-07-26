@@ -82,7 +82,6 @@ export const CommentListLeft = styled.div`
   height: 40px;
   background-image: url('/WriterProfileImg.png');
   background-size: 100%;
-  background-repeat: no-repeat;
   margin-right: 16px;
 `;
 export const CommentListRight = styled.div`

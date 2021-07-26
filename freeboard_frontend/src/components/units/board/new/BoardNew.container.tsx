@@ -4,7 +4,7 @@ import { useMutation } from '@apollo/client';
 import { useRouter } from 'next/router';
 import { CREATE_BOARD, UPDATE_BOARD } from './BoardNew.queries';
 import NewPageUI from './BoardNew.presenter';
-// import { Modal } from 'antd';
+import { Modal } from 'antd';
 
 export const INPUT_INIT = {
   writer: '',
@@ -15,6 +15,7 @@ export const INPUT_INIT = {
 };
 interface Iprops {
   isEdit?: boolean;
+  data?: any;
 }
 interface INewInputs {
   title?: string;
@@ -84,9 +85,15 @@ export default function NewPage(props: IProps) {
             },
           },
         });
-        alert('게시물이 등록되었습니다.');
+        // alert('게시물이 등록되었습니다.');
+        Modal.confirm({
+          title: 'Confirm',
+          content: '게시물이 등록되었습니다.',
+          onOk: () =>
+            router.push(`/board/detail/${result.data.createBoard._id}`),
+          // onCancel: () => router.push(`/board/bestposts`),
+        });
         // alert(result.data.createBoard._id);
-        router.push(`/board/detail/${result.data.createBoard._id}`);
       } catch (error) {
         alert(error);
       }

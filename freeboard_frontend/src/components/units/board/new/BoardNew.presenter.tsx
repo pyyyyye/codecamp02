@@ -53,6 +53,7 @@ export default function NewPageUI(props: NewPageUIProps) {
               type="text"
               name="writer"
               onChange={props.onChangeInputs}
+              defaultValue={props.data?.fetchBoard.title}
               placeholder="아이디를 입력해주세요."
             />
             <ErrorM>{props.inputsErrors.writer}</ErrorM>
