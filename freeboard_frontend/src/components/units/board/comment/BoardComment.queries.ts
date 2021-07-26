@@ -21,7 +21,7 @@ export const FETCHBOARD_COMMENT_LIST = gql`
       _id
       writer
       contents
-      # rating
+      rating
       createdAt
     }
   }

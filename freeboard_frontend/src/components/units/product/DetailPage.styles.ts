@@ -5,7 +5,6 @@ import ReactPlayer from 'react-player';
 
 export const Wrapper = styled.div`
   width: 100%;
-  border-bottom: 1px solid #bdbdbd;
 `;
 
 export const PostContents = styled.div`
@@ -66,8 +65,8 @@ export const LinkIcon = styled.img`
 export const MapIcon = styled.img`
   width: 32px;
   height: 32px;
+  cursor: pointer;
 `;
-
 //------ MiddleContentsPost Start -------
 export const MiddleContentsPost = styled.div`
   width: 100%;

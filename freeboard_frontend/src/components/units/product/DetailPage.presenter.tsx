@@ -27,6 +27,7 @@ import {
 } from './DetailPage.styles';
 import { getDate } from '../../../commons/libraries/utils';
 import { IDetailPageUIProps } from './DetailPage.types';
+import { Tooltip } from 'antd';
 
 export default function DetailPageUI(props: IDetailPageUIProps) {
   return (
@@ -41,10 +42,15 @@ export default function DetailPageUI(props: IDetailPageUIProps) {
             <Date>{getDate(props.data?.fetchBoard.createdAt)}</Date>
           </WriterInfo>
           <WriterIcon>
-            {' '}
             {/*---- 우측 픽토그램 ---*/}
             <LinkIcon src="/link.png" />
-            <MapIcon src="/link2.png" />
+            {/* <MapIcon src="/link2.png" /> */}
+            <Tooltip
+              placement="top"
+              title={`${props.data?.fetchBoard.boardAddress?.address} ${props.data?.fetchBoard.boardAddress?.addressDetail}`}
+            >
+              <MapIcon src="/link2.png" alt="작성자 주소" />
+            </Tooltip>
           </WriterIcon>
         </TopContentsWriter>
 

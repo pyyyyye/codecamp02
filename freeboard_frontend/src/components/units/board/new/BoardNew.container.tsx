@@ -4,7 +4,7 @@ import { useMutation } from '@apollo/client';
 import { useRouter } from 'next/router';
 import { CREATE_BOARD, UPDATE_BOARD } from './BoardNew.queries';
 import NewPageUI from './BoardNew.presenter';
-// import { Modal } from 'antd';
+import { Modal } from 'antd';
 
 export const INPUT_INIT = {
   writer: '',
@@ -15,6 +15,7 @@ export const INPUT_INIT = {
 };
 interface Iprops {
   isEdit?: boolean;
+  data?: any;
 }
 interface INewInputs {
   title?: string;
@@ -28,12 +29,16 @@ export default function NewPage(props: IProps) {
   const [inputs, setInputs] = useState(INPUT_INIT);
   const [inputsErrors, setInputsErrors] = useState(INPUT_INIT);
   const [isOpen, setIsOpen] = useState(false);
+  const [zipcode, setZipcode] = useState('');
   const [address, setAddress] = useState('');
-  const [zoneCode, setZoneCode] = useState('');
+  const [addressDetail, setAddressDetail] = useState('');
 
   //!▶▶▶▶▶ id.pw.title.contents 빈칸 ◀◀◀◀◀◀//
   const [active, setActive] = useState(false); //버튼 초기값.false(옅은노랑)
 
+  function onChangeAddressDetail(event: any) {
+    setAddressDetail(event?.target.value);
+  }
   function onChangeInputs(event: any) {
     //값이 모두 채워지면 true로 바뀜.
     const newInput = {
@@ -48,7 +53,7 @@ export default function NewPage(props: IProps) {
   //!▶▶▶▶▶ 주소입력 ◀◀◀◀◀◀//
   function onComplete(data: any) {
     setAddress(data.address);
-    setZoneCode(data.zonecode);
+    setZipcode(data.zonecode);
     setIsOpen(false);
   }
   function onClickOpenModal() {
@@ -72,12 +77,23 @@ export default function NewPage(props: IProps) {
           variables: {
             createBoardInput: {
               ...inputs,
+              boardAddress: {
+                zipcode,
+                address,
+                addressDetail,
+              },
             },
           },
         });
-        alert('게시물이 등록되었습니다.');
+        // alert('게시물이 등록되었습니다.');
+        Modal.confirm({
+          title: 'Confirm',
+          content: '게시물이 등록되었습니다.',
+          onOk: () =>
+            router.push(`/board/detail/${result.data.createBoard._id}`),
+          // onCancel: () => router.push(`/board/bestposts`),
+        });
         // alert(result.data.createBoard._id);
-        router.push(`/board/detail/${result.data.createBoard._id}`);
       } catch (error) {
         alert(error);
       }
@@ -118,7 +134,8 @@ export default function NewPage(props: IProps) {
       inputsErrors={inputsErrors}
       isOpen={isOpen}
       address={address}
-      zoneCode={zoneCode}
+      zipcode={zipcode}
+      onChangeAddressDetail={onChangeAddressDetail}
     />
   );
 }

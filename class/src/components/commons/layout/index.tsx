@@ -3,6 +3,7 @@ import LayoutFooter from './footer/LayoutFooter.presenter';
 import LayoutBanner from './banner/LayoutBanner.container';
 import LayoutNavigation from './navigation/LayoutNavigation.presenter';
 import styled from '@emotion/styled';
+import { ReactNode } from 'react';
 
 const Body = styled.div`
   height: 500px;
@@ -12,7 +13,10 @@ const Wrapper = styled.div`
   flex-direction: row;
 `;
 
-export default function Layout(props: any) {
+interface IProps {
+  children: ReactNode;
+}
+export default function Layout(props: IProps) {
   return (
     <>
       <LayoutHeader />
