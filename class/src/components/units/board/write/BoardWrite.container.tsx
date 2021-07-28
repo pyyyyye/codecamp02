@@ -76,7 +76,7 @@ export default function BoardWrite(props: IProps) {
     // writer갖고오면 나머지 password등은 그대로고. 이런식.
     // event.target.value // 철수 (value값 가져옴)
 
-    //function onChangeWriter(event){ //!--///이하 4개기능=상단onChangeInputs로합침.///--
+    // function onChangeWriter(event){ // !--///이하 4개기능=상단onChangeInputs로합침. /// --
     //     setWriter(event.target.value)
     // *위 input들 다 채워지면 값이 true로 바뀌고 (빨간색)으로 바뀌게
     // if (event.target.value && password  && title && contents){ setActive(true) }
