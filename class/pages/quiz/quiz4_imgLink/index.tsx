@@ -1,13 +1,9 @@
 import styled from '@emotion/styled';
 import { ChangeEvent, useRef, useState } from 'react';
-import { FileImageOutlined } from '@ant-design/icons';
+import { FileImageOutlined, SettingFilled } from '@ant-design/icons';
 import { gql, useMutation } from '@apollo/client';
 
 // ------------------- styled --------------------
-const TopInputBox = styled.div`
-  border: 1px solid red;
-  margin-bottom: 30px;
-`;
 const ButtonBox = styled.div`
   display: flex;
   justify-content: space-between;
@@ -39,7 +35,11 @@ export default function Quiz4() {
     contents: '',
   };
   const [inputs, setInputs] = useState(InputIn);
-  const [imgUrl, setImgUrl] = useState('');
+
+  const [imgUrl1, setImgUrl1] = useState('');
+  const [imgUrl2, setImgUrl2] = useState('');
+  const [imgUrl3, setImgUrl3] = useState('');
+
   const [createBoard] = useMutation(CREATE_BOARD);
   const [uploadFile] = useMutation(UPLOAD_FILE);
   const PyeRef = useRef<HTMLInputElement>(null);
@@ -64,8 +64,21 @@ export default function Quiz4() {
           uploadFile: file,
         },
       });
-      console.log(result.data.uploadFile.url);
-      setImgUrl(result.data.uploadFile.url);
+
+      if (e.target.id === '1') {
+        setImgUrl1(result.data.uploadFile.url);
+      }
+      if (e.target.id === '2') {
+        setImgUrl2(result.data.uploadFile.url);
+      }
+      if (e.target.id === '3') {
+        setImgUrl3(result.data.uploadFile.url);
+      }
+
+      // console.log(result.data.uploadFile.url);
+      // setImgUrl1(result.data.uploadFile.url);
+      // setImgUrl2(result.data.uploadFile.url);
+      // setImgUrl3(result.data.uploadFile.url);
     } catch (error) {
       alert(error.message);
     }
@@ -88,7 +101,7 @@ export default function Quiz4() {
         variables: {
           createBoard: {
             ...inputs,
-            images: [imgUrl],
+            images: [imgUrl1, imgUrl2, imgUrl3],
           },
         },
       });
@@ -102,37 +115,36 @@ export default function Quiz4() {
   // ------------------- presenter --------------------
   return (
     <>
-      <TopInputBox>
-        <input
-          type="text"
-          onChange={onChangeInput}
-          name="writer"
-          placeholder="작성자"
-        />
-        <br />
-        <input
-          type="text"
-          onChange={onChangeInput}
-          name="password"
-          placeholder="비번"
-        />
-        <br />
-        <input
-          type="text"
-          onChange={onChangeInput}
-          name="title"
-          placeholder="제목"
-        />
-        <br />
-        <input
-          type="text"
-          onChange={onChangeInput}
-          name="contents"
-          placeholder="내용"
-        />
-        <br />
-        <button onClick={onClickSubmit}>게시물 등록</button>
-      </TopInputBox>
+      <input
+        type="text"
+        onChange={onChangeInput}
+        name="writer"
+        placeholder="작성자"
+      />
+      <br />
+      <input
+        type="text"
+        onChange={onChangeInput}
+        name="password"
+        placeholder="비번"
+      />
+      <br />
+      <input
+        type="text"
+        onChange={onChangeInput}
+        name="title"
+        placeholder="제목"
+      />
+      <br />
+      <input
+        type="text"
+        onChange={onChangeInput}
+        name="contents"
+        placeholder="내용"
+      />
+      <br />
+      <button onClick={onClickSubmit}>게시물 등록</button>
+      {/* // ----------------- Button ------------------ */}
       <ButtonBox>
         <FileImageOutlined
           onClick={onClickButton}
@@ -147,11 +159,14 @@ export default function Quiz4() {
           style={{ fontSize: '80px', color: 'skyblue', cursor: 'pointer' }}
         />
       </ButtonBox>
-      <img
-        src={`https://storage.googleapis.com/${imgUrl}`}
-        alt="불러온 이미지"
-      />
-      <input type="file" onChange={onChangeFile} ref={PyeRef} />
+      {/* <img src={`https://storage.googleapis.com/${imgUrl}`} />
+      <input type="file" id="1" onChange={onChangeFile} ref={PyeRef} /> */}
+      <img src={`https://storage.googleapis.com/${imgUrl1}`} />
+      <input type="file" id="1" onChange={onChangeFile} ref={PyeRef} />
+      <img src={`https://storage.googleapis.com/${imgUrl2}`} />
+      <input type="file" id="2" onChange={onChangeFile} ref={PyeRef} />
+      <img src={`https://storage.googleapis.com/${imgUrl3}`} />
+      <input type="file" id="3" onChange={onChangeFile} ref={PyeRef} />
     </>
   );
 }
