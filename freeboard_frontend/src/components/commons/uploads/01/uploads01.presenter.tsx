@@ -7,7 +7,7 @@ import {
 } from './uploads01.styles';
 // import { IUploads01UIProps } from './ploads01.types';
 
-export default function Uploads01UI(props: IUploads01UIProps) {
+export default function Uploads01UI(props) {
   return (
     <>
       {props.fileUrl ? (

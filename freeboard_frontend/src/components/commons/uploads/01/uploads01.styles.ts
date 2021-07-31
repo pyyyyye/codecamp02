@@ -7,9 +7,9 @@ export const UploadImage = styled.img`
   cursor: pointer;
 `;
 
-export const UploadButton = styled.button`
-  width: 78px;
-  height: 78px;
+export const UploadButton = styled.div`
+  width: 100px;
+  height: 100px;
   background-color: #bdbdbd;
   margin-right: 24px;
   outline: none;
@@ -24,17 +24,14 @@ export const UploadFileHidden = styled.input`
 //-------- 질문 1
 // class 객체이름 {
 // constructor(){
-
 // }
-
-//     변수
+//    변수
 //     함수(메소드)
 //     getFullYer() = {
 //         String(date). - -
 //         return
 //     }
 // }
-
 // new 객체이름()
 // const aaa = new Date('2011-09-12')
 // aaa.

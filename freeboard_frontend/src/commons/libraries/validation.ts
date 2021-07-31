@@ -1,8 +1,7 @@
 // file 확인 modal
+import { Modal } from 'antd';
 
-import Modal from 'antd';
-
-export function checkValidationFile() {
+export function checkValidationFile(file: File) {
   if (!file?.size) {
     Modal.error({ content: '파일이 없습니다.' });
     return false;

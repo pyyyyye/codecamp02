@@ -70,7 +70,7 @@ export default function DetailPageUI(props: IDetailPageUIProps) {
           />
         </MiddleContentsPost>
 
-        {/*//!--- BottomContentsRecommend Start ---*/}
+        {/*//!--- BottomContentsRecommend 좋아요 싫어요 Start --- */}
         <BottomContentsRecommend>
           <Recommendations>
             <RecomImage src="/recom.png" />

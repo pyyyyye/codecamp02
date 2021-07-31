@@ -15,13 +15,10 @@ import {
   AddressButton,
   AddressInput,
   PhotoBox,
-  UploadBox,
-  ImgUploadBox,
   RadioButton,
   RadioBox,
   ButtonBox,
   Button1,
-  ImgUploadInput,
   ErrorM,
 } from './BoardNew.styles';
 import { Modal } from 'antd';
@@ -35,10 +32,13 @@ interface NewPageUIProps {
   inputsErrors: String;
   address: string;
   zoneCode: string;
+  zipcode: string;
   onChangeInputs: (event: any) => void;
   onClickSubmit: () => void;
   onClickOpenModal: () => void;
   onComplete: () => void;
+  onChangeAddressDetail: (data: any) => void;
+  onChangeFiles: (file: File, index: number) => void;
 }
 
 export default function NewPageUI(props: NewPageUIProps) {
@@ -120,11 +120,16 @@ export default function NewPageUI(props: NewPageUIProps) {
           />
         </LongInput>
 
+        {/* --------------  이미지 업로드 버튼  -------------- */}
         <PhotoBox>
           <Categorize>사진 첨부</Categorize>
-          {/* --------------  이미지 업로드 버튼  -------------- */}
+
           {new Array(3).fill('a').map((data, index) => (
-            <Upload01 key={`${data}_${index}`} index={index} />
+            <Upload01
+              key={`${data}_${index}`}
+              index={index}
+              onChangeFiles={props.onChangeFiles}
+            />
           ))}
         </PhotoBox>
 
