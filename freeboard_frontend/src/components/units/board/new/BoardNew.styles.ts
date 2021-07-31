@@ -113,7 +113,7 @@ export const UploadBox = styled.div`
   display: flex;
   justify-content: space-between;
 `;
-export const SmallBox = styled.label`
+export const ImgUploadBox = styled.label`
   width: 78px;
   height: 78px;
   background-color: #bdbdbd;
@@ -122,7 +122,7 @@ export const SmallBox = styled.label`
   cursor: pointer;
 `;
 
-export const LoadButton = styled.input`
+export const ImgUploadInput = styled.input`
   //파일업로드 input박스 숨김
   display: none;
   outline: none;
