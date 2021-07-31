@@ -84,7 +84,6 @@ export default function ImagePreviewPage() {
     try {
       //   const start = performance.now();
       const resultFiles = await Promise.all([
-        // 여러개를 동시에 처리할 때 사용 실무 多!!!        // 배열로 담아주고 있어.
         uploadFile({ variables: { aaa: files } }),
         uploadFile({ variables: { aaa: files } }),
         uploadFile({ variables: { aaa: files } }),
@@ -136,6 +135,7 @@ export default function ImagePreviewPage() {
       <br />
       <input type="text" onChange={onChangeContents} />
       <br />
+      {/* ----------- 이하 이미지 첨부 버튼 3개 --------- */}
       <img src={imageUrl1} />
       <input type="file" id="1" onChange={onChangeFile} />
       <img src={imageUrl2} />

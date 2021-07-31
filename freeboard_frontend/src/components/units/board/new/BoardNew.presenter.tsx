@@ -15,17 +15,15 @@ import {
   AddressButton,
   AddressInput,
   PhotoBox,
-  UploadBox,
-  SmallBox,
   RadioButton,
   RadioBox,
   ButtonBox,
   Button1,
-  LoadButton,
   ErrorM,
 } from './BoardNew.styles';
 import { Modal } from 'antd';
 import DaumPostcode from 'react-daum-postcode';
+import Upload01 from '../../../commons/uploads/01/uploads01.container';
 
 interface NewPageUIProps {
   isEdit: boolean;
@@ -34,10 +32,13 @@ interface NewPageUIProps {
   inputsErrors: String;
   address: string;
   zoneCode: string;
+  zipcode: string;
   onChangeInputs: (event: any) => void;
   onClickSubmit: () => void;
   onClickOpenModal: () => void;
   onComplete: () => void;
+  onChangeAddressDetail: (data: any) => void;
+  onChangeFiles: (file: File, index: number) => void;
 }
 
 export default function NewPageUI(props: NewPageUIProps) {
@@ -119,27 +120,17 @@ export default function NewPageUI(props: NewPageUIProps) {
           />
         </LongInput>
 
+        {/* --------------  이미지 업로드 버튼  -------------- */}
         <PhotoBox>
           <Categorize>사진 첨부</Categorize>
-          <UploadBox>
-            {/* -----!! 파일 업로드 소스 !!----- */}
 
-            <SmallBox className="input-file-button" for="input-file">
-              + <br />
-              Upload
-            </SmallBox>
-            <LoadButton type="file" id="input-file" />
-            <SmallBox className="input-file-button" for="input-file">
-              + <br />
-              Upload
-            </SmallBox>
-            <LoadButton type="file" id="input-file" />
-            <SmallBox className="input-file-button" for="input-file">
-              + <br />
-              Upload
-            </SmallBox>
-            <LoadButton type="file" id="input-file" />
-          </UploadBox>
+          {new Array(3).fill('a').map((data, index) => (
+            <Upload01
+              key={`${data}_${index}`}
+              index={index}
+              onChangeFiles={props.onChangeFiles}
+            />
+          ))}
         </PhotoBox>
 
         <RadioBox>

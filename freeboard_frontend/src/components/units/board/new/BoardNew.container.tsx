@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { useRouter } from 'next/router';
-import { CREATE_BOARD, UPDATE_BOARD } from './BoardNew.queries';
+import { CREATE_BOARD, UPDATE_BOARD, UPLOAD_FILE } from './BoardNew.queries';
 import NewPageUI from './BoardNew.presenter';
 import { Modal } from 'antd';
 
@@ -26,12 +26,14 @@ export default function NewPage(props: IProps) {
   const router = useRouter();
   const [createBoardMutation] = useMutation(CREATE_BOARD);
   const [updateBoard] = useMutation(UPDATE_BOARD);
+  const [uploadFile] = useMutation(UPLOAD_FILE);
   const [inputs, setInputs] = useState(INPUT_INIT);
   const [inputsErrors, setInputsErrors] = useState(INPUT_INIT);
   const [isOpen, setIsOpen] = useState(false);
   const [zipcode, setZipcode] = useState('');
   const [address, setAddress] = useState('');
   const [addressDetail, setAddressDetail] = useState('');
+  const [files, setFiles] = useState<(File | null)[]>([null, null, null]);
 
   //!▶▶▶▶▶ id.pw.title.contents 빈칸 ◀◀◀◀◀◀//
   const [active, setActive] = useState(false); //버튼 초기값.false(옅은노랑)
@@ -73,6 +75,14 @@ export default function NewPage(props: IProps) {
     const isEvery = Object.values(inputs).every((data) => data);
     if (isEvery) {
       try {
+        // 이미지 업로드
+        const uploadFiles = files
+          .filter((data) => data)
+          .map((data) => uploadFile({ variables: { file: data } }));
+        const results = await Promise.all(uploadFiles);
+        const images = results.map((data) => data.data.uploadFile.url);
+
+        // 게시물 업로드
         const result = await createBoardMutation({
           variables: {
             createBoardInput: {
@@ -82,21 +92,22 @@ export default function NewPage(props: IProps) {
                 address,
                 addressDetail,
               },
+              images: images,
             },
           },
         });
-        // alert('게시물이 등록되었습니다.');
         Modal.confirm({
-          title: 'Confirm',
-          content: '게시물이 등록되었습니다.',
+          content: '게시물이 성공적으로 등록되었습니다.',
           onOk: () =>
             router.push(`/board/detail/${result.data.createBoard._id}`),
           // onCancel: () => router.push(`/board/bestposts`),
         });
+        console.log('드뎌 등록 되었다');
         // alert(result.data.createBoard._id);
       } catch (error) {
         alert(error);
       }
+      console.log(result.data);
     }
   }
 
@@ -122,6 +133,12 @@ export default function NewPage(props: IProps) {
     }
   }
 
+  function onChangeFiles(file: File, index: number) {
+    const newFiles = [...files];
+    newFiles[index] = file;
+    setFiles(newFiles);
+  }
+
   return (
     <NewPageUI //!-----------props로 담는 구간
       onChangeInputs={onChangeInputs}
@@ -136,6 +153,7 @@ export default function NewPage(props: IProps) {
       address={address}
       zipcode={zipcode}
       onChangeAddressDetail={onChangeAddressDetail}
+      onChangeFiles={onChangeFiles}
     />
   );
 }
