@@ -13,7 +13,7 @@ export const INPUT_INIT = {
   contents: '',
   youtubeUrl: '',
 };
-interface Iprops {
+interface IProps {
   isEdit?: boolean;
   data?: any;
 }
@@ -71,9 +71,11 @@ export default function NewPage(props: IProps) {
       contents: inputs.contents ? '' : '내용을 입력해주세요',
       youtubeUrl: inputs.youtubeUrl ? '' : '',
     });
+
     //!----- error 실행 시작-----//
     const isEvery = Object.values(inputs).every((data) => data);
     if (isEvery) {
+      console.log('asdasdfasdf');
       try {
         // 이미지 업로드
         const uploadFiles = files
@@ -98,16 +100,17 @@ export default function NewPage(props: IProps) {
         });
         Modal.confirm({
           content: '게시물이 성공적으로 등록되었습니다.',
-          onOk: () =>
-            router.push(`/board/detail/${result.data.createBoard._id}`),
-          // onCancel: () => router.push(`/board/bestposts`),
+          onOk: () => {
+            router.push(`/board/detail/${result.data.createBoard._id}`);
+            console.log('드뎌 등록 되었다');
+            // onCancel: () => router.push(`/board/bestposts`),
+          },
         });
-        console.log('드뎌 등록 되었다');
+
         // alert(result.data.createBoard._id);
       } catch (error) {
-        alert(error);
+        alert('게시글 업로드에 실패했습니다.');
       }
-      console.log(result.data);
     }
   }
 
@@ -129,7 +132,7 @@ export default function NewPage(props: IProps) {
       });
       router.push(`/detail/${result.data?.updateBoard._id}`);
     } catch (error) {
-      alert(error);
+      alert('수정에 실패했습니다.');
     }
   }
 

@@ -1,4 +1,5 @@
 //베스트 게시글 화면 presenter.js
+import Pagination01 from '../../../commons/pagination/01/pagination01.container';
 import {
   BestListWrapper,
   BestListTop,
@@ -28,15 +29,11 @@ import {
   CategorizeTop,
   CategorizeTopTitle,
   ListFooter,
-  MoveToPage,
-  GoToPrev,
-  PageNum,
-  GoToNext,
   UploadButton,
-} from "./BestList.styles";
-import { getDate } from "../../../../commons/libraries/utils";
+} from './BestList.styles';
+import { getDate } from '../../../../commons/libraries/utils';
 
-export default function ListPageUI({onClickTitle, onClickUpload, data }) {
+export default function ListPageUI({ onClickTitle, onClickUpload, data }) {
   return (
     <>
       <BestListWrapper>
@@ -85,7 +82,7 @@ export default function ListPageUI({onClickTitle, onClickUpload, data }) {
           <PostListsBox>
             <Categorize>
               <CategorizeTop aaa={true}>번호</CategorizeTop>
-              <CategorizeTopTitle aaa={true} >제목</CategorizeTopTitle>
+              <CategorizeTopTitle aaa={true}>제목</CategorizeTopTitle>
               <CategorizeTop aaa={true}>작성자</CategorizeTop>
               <CategorizeTop aaa={true}>작성일</CategorizeTop>
             </Categorize>
@@ -93,7 +90,9 @@ export default function ListPageUI({onClickTitle, onClickUpload, data }) {
             {data?.fetchBoards.map((data, index) => (
               <Categorize key={data._id}>
                 <CategorizeTop>{index + 1}</CategorizeTop>
-                <CategorizeTopTitle id={data?._id} onClick={onClickTitle}>{data.title} </CategorizeTopTitle>
+                <CategorizeTopTitle id={data?._id} onClick={onClickTitle}>
+                  {data.title}{' '}
+                </CategorizeTopTitle>
                 <CategorizeTop>{data.writer}</CategorizeTop>
                 <CategorizeTop>{getDate(data.createdAt)}</CategorizeTop>
               </Categorize>
@@ -102,12 +101,7 @@ export default function ListPageUI({onClickTitle, onClickUpload, data }) {
 
           {/* //!▶▶▶▶▶  ListFooter Start  ◀◀◀◀◀// */}
           <ListFooter>
-            <MoveToPage>
-              <GoToPrev src="/icon_prev.png" alt="이전 페이지로" />
-              <PageNum>1</PageNum>
-              <PageNum>2</PageNum>
-              <GoToNext src="/icon_next.png" alt="다음 페이지로" />
-            </MoveToPage>
+            <Pagination01 />
             <UploadButton id={data?._id} onClick={onClickUpload}>
               게시물 등록하기
             </UploadButton>

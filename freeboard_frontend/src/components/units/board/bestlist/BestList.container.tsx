@@ -1,12 +1,15 @@
-//베스트 게시글 화면 container.js
+//베스트 게시글 화면 container.ts
+import ListPageUI from './BestList.presenter';
 import { useQuery } from '@apollo/client';
 import { FETCH_BOARDS } from './BestList.queries';
-import ListPageUI from './BestList.presenter';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 
 export default function ListPage() {
-  const { data } = useQuery(FETCH_BOARDS);
   const router = useRouter();
+  const [startPage, setStartPage] = useState(1);
+  const [keyword, setKeword] = useState('');
+  const { data } = useQuery(FETCH_BOARDS);
 
   function onClickTitle(event) {
     console.log(event.target);
