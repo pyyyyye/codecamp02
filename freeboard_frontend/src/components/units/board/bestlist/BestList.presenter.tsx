@@ -101,7 +101,8 @@ export default function ListPageUI({ onClickTitle, onClickUpload, data }) {
 
           {/* //!▶▶▶▶▶  ListFooter Start  ◀◀◀◀◀// */}
           <ListFooter>
-            <Pagination01 />
+            <Pagination01 
+            />
             <UploadButton id={data?._id} onClick={onClickUpload}>
               게시물 등록하기
             </UploadButton>
