@@ -57,7 +57,10 @@ export default function DetailPageUI(props: IDetailPageUIProps) {
         {/*//! --- MiddleContentsPost Start --- */}
         <MiddleContentsPost>
           <ContentsTitle> {props.data?.fetchBoard.title}</ContentsTitle>
-          <ContentsImage src="/detailpageImage.png" />
+          {props.data?.fetchBoard.images.map((data) => (
+            <ContentsImage src={`https://storage.googleapis.com/${data}`} />
+          ))}
+
           <ContentsText>{props.data?.fetchBoard.contents}</ContentsText>
 
           <ContentsVideo

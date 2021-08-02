@@ -80,7 +80,6 @@ export const ContentsTitle = styled.h1`
 export const ContentsImage = styled.img`
   width: 100%;
   height: 480px;
-  background-color: skyblue;
 `;
 export const ContentsText = styled.p`
   font-size: 16px;

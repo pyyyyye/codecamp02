@@ -174,13 +174,11 @@ export const CategorizeTop = styled.div`
   width: 150px;
   font-weight: 600;
   text-align: center;
-  /* background-color: ${(props) => (props.aaa ? 'lemonchiffon' : 'white')}; */
 `;
 export const CategorizeTopTitle = styled.div`
   width: 750px;
   font-weight: 600;
   text-align: center;
-  /* background-color: ${(props) => (props.aaa ? 'yellow' : 'white')}; */
 `;
 
 export const CategorizeBottom = styled.div`
@@ -193,28 +191,6 @@ export const ListFooter = styled.div`
   height: 50px;
   margin-top: 40px;
 `;
-export const MoveToPage = styled.div`
-  width: 105px;
-  height: 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0 auto;
-  padding-top: 20px;
-`;
-export const GoToPrev = styled.img`
-  width: 8px;
-  height: 12px;
-`;
-export const GoToNext = styled.img`
-  width: 8px;
-  height: 12px;
-`;
-export const PageNum = styled.div`
-  font-size: 16px;
-  font-weight: 400;
-`;
-
 export const UploadButton = styled.button`
   width: 171px;
   height: 52px;
