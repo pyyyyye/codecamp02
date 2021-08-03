@@ -14,6 +14,7 @@ import { createUploadLink } from 'apollo-upload-client';
 
 import firebase from 'firebase/app';
 import 'firebase/firestore';
+import { createContext, Dispatch, SetStateAction, useState } from 'react';
 
 if (typeof window !== 'undefined') {
   firebase.initializeApp({
@@ -25,10 +26,27 @@ if (typeof window !== 'undefined') {
   });
 }
 
+interface IContext {
+  accessToken: string;
+  setAccessToken: Dispatch<SetStateAction<string>>;
+}
+
+export const GlobalContext = createContext<IContext>({});
 function MyApp({ Component, pageProps }: AppProps) {
+  const [accessToken, setAccessToken] = useState('');
+  const value = {
+    accessToken: accessToken,
+    setAccessToken: setAccessToken,
+  };
+
   const uploadLink = createUploadLink({
-    // 실제 파일이 업로드 될 주소
+    // 실제 데이터가 업로드 될 백엔드 주소
     uri: 'http://backend02.codebootcamp.co.kr/graphql',
+    headers: {
+      authorization: `Bearer ${accessToken}`,
+      // 'accessToken 넣는 자리'
+      // 다르게 해도 되지만,  Bearer 라고 하면 토큰 정보 주고받는 자리라고 약속함.
+    },
   });
   const client = new ApolloClient({
     // uri: 'http://backend02.codebootcamp.co.kr/graphql',
@@ -37,12 +55,14 @@ function MyApp({ Component, pageProps }: AppProps) {
   });
 
   return (
-    <ApolloProvider client={client}>
-      <Layout>
-        <Global styles={globalStyles} />
-        <Component {...pageProps} />
-      </Layout>
-    </ApolloProvider>
+    <GlobalContext.Provider value={value}>
+      <ApolloProvider client={client}>
+        <Layout>
+          <Global styles={globalStyles} />
+          <Component {...pageProps} />
+        </Layout>
+      </ApolloProvider>
+    </GlobalContext.Provider>
   );
 }
 export default MyApp;
