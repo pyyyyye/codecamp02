@@ -1,42 +1,65 @@
 // ---------- 중고마켓 로그인 presenter.tsx -------------
-import { MiddleContentsPost } from '../product/DetailPage.styles';
 import {
   Wrapper,
   LoginWrap,
   LoginContents,
   TopLogo,
-  MiddleLoginBox,
+  MainLoginContents,
   InputLogin,
   KeepStateLogin,
-  LoginCheckIcon,
   KeepLoginText,
   GoToLogin,
   BottomJoinOrFind,
   BottomBtn,
 } from './MarketLogin.styles';
+import { CheckCircleOutlined } from '@ant-design/icons';
+import { ChangeEvent } from 'react';
 
-export default function MarketLoginUI() {
+interface IProps {
+  onChangeEmail: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void;
+  onClickLogin: () => void;
+}
+
+export default function MarketLoginUI(props: IProps) {
   return (
     <Wrapper>
       <LoginWrap>
         <LoginContents>
           <TopLogo />
-          <MiddleLoginBox>
-            <InputLogin value="text" placeholder="아이디를 입력해주세요" />
+          <MainLoginContents>
+            {/* ---- MainLoginContents Start ---- */}
             <InputLogin
-              value="password"
+              type="text"
+              onChange={props.onChangeEmail}
+              placeholder="아이디를 입력해주세요"
+            />
+
+            {/* -- 비밀번호 -- */}
+            <InputLogin
+              type="password"
+              onChange={props.onChangePassword}
               placeholder="비밀번호를 입력해주세요"
             />
+
+            {/* -- 로그인상태 유지 체크박스 -- */}
             <KeepStateLogin>
-              <LoginCheckIcon>흥</LoginCheckIcon>
-              <KeepLoginText>로그인 상태 유지</KeepLoginText>
+              <CheckCircleOutlined />
+              <KeepLoginText>로그인 상태 유지 </KeepLoginText>
             </KeepStateLogin>
-            <GoToLogin>로그인하기</GoToLogin>
-          </MiddleLoginBox>
-          <BottomJoinOrFind>
-            <BottomBtn>이메일 찾기</BottomBtn>|
-            <BottomBtn>비밀번호 찾기</BottomBtn>|<BottomBtn>회원가입</BottomBtn>
-          </BottomJoinOrFind>
+
+            {/* -- 로그인 버튼 -- */}
+            <GoToLogin onClick={props.onClickLogin}>로그인하기</GoToLogin>
+
+            {/* -- 하단 비밀번호 찾기 및 회원가입 -- */}
+            <BottomJoinOrFind>
+              <BottomBtn>이메일 찾기</BottomBtn>|
+              <BottomBtn>비밀번호 찾기</BottomBtn>|
+              <BottomBtn>회원가입</BottomBtn>
+            </BottomJoinOrFind>
+
+            {/* ---- MainLoginContents End ---- */}
+          </MainLoginContents>
         </LoginContents>
       </LoginWrap>
     </Wrapper>
