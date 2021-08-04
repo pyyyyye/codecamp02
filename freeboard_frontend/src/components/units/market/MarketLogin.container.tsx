@@ -1,26 +1,29 @@
 // ---------- 중고마켓 로그인 container.tsx -------------
 import { useMutation } from '@apollo/client';
 import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import { useContext } from 'react';
 import { ChangeEvent, useState } from 'react';
 import { GlobalContext } from '../../../../pages/_app';
 import MarketLoginUI from './MarketLogin.presenter';
 import { LOGIN_USER } from './MarketLogin.queries';
-
-// import { CheckCircleOutlined } from '@ant-design/icons';
-
 export default function MarketLogin() {
   // const router = useRouter();
   const { setAccessToken } = useContext(GlobalContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loginUser] = useMutation(LOGIN_USER);
+  const router = useRouter();
 
   function onChangeEmail(event: ChangeEvent<HTMLInputElement>) {
     setEmail(event.target.value);
   }
   function onChangePassword(event: ChangeEvent<HTMLInputElement>) {
     setPassword(event.target.value);
+  }
+  function onClickGoToSignup(event) {
+    console.log(event.target);
+    router.push('/market/signup');
   }
 
   async function onClickLogin() {
@@ -44,6 +47,7 @@ export default function MarketLogin() {
       onChangeEmail={onChangeEmail}
       onChangePassword={onChangePassword}
       onClickLogin={onClickLogin}
+      onClickGoToSignup={onClickGoToSignup}
     />
   );
 }
