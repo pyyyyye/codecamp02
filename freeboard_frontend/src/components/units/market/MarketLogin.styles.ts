@@ -1,17 +1,5 @@
 // ---------- 중고마켓 로그인 styles.tsx -------------
 import styled from '@emotion/styled';
-
-export const Wrapper = styled.div`
-  width: 100%;
-  height: 100vh;
-  background-image: url('/market/market_bg.png');
-`;
-export const LoginWrap = styled.div`
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.8);
-  position: relative;
-`;
 export const LoginContents = styled.div`
   width: 380px;
   height: 510px;

@@ -44,7 +44,9 @@ export default function SignupPage() {
       // =ClobalContext에 담아라
       //   console.log(result.data?.loginUser.accessToken);
       //   alert(result.data?.loginUser.accessToken); // accessToken 보여지게
-      router.push('/22-login-success');
+
+      // router.push('/22-login-success');
+      router.push('/23-hoc');
     } catch (error) {
       alert(error.message);
     }
