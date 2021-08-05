@@ -12,6 +12,7 @@ import { globalStyles } from '../src/commons/styles/globalStyles';
 import { createContext, Dispatch, SetStateAction, useState } from 'react';
 import { AppProps } from 'next/dist/next-server/lib/router/router';
 import { useRouter } from 'next/router';
+import Layout from '../src/components/commons/layout';
 
 interface IContext {
   accessToken: string;
@@ -47,27 +48,29 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <GlobalContext.Provider value={value}>
       <ApolloProvider client={client}>
-        <div // ----- market 배경이미지 때문에 추가한 부분 50~69 줄.( 67번줄 제외 )
-          style={
-            checkLogin
-              ? {
-                  backgroundImage: 'url(/market/market_bg.png)',
-                  height: '100%',
-                }
-              : undefined
-          }
-        >
-          <div
+        <Layout>
+          <div // ----- market 배경이미지 때문에 추가한 부분 50~69 줄.( 67번줄 제외 )
             style={
               checkLogin
-                ? { backgroundColor: 'rgba(0, 0, 0, 0.8)', height: '100%' }
+                ? {
+                    backgroundImage: 'url(/market/market_bg.png)',
+                    height: '100%',
+                  }
                 : undefined
             }
           >
-            <Component {...pageProps} />
+            <div
+              style={
+                checkLogin
+                  ? { backgroundColor: 'rgba(0, 0, 0, 0.8)', height: '100%' }
+                  : undefined
+              }
+            >
+              <Component {...pageProps} />
+            </div>
           </div>
-        </div>
-        <Global styles={globalStyles} />
+          <Global styles={globalStyles} />
+        </Layout>
       </ApolloProvider>
     </GlobalContext.Provider>
   );

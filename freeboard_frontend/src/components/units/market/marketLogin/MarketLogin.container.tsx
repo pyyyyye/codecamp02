@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 // import { useRouter } from 'next/router';
 import { useContext } from 'react';
 import { ChangeEvent, useState } from 'react';
-import { GlobalContext } from '../../../../pages/_app';
+import { GlobalContext } from '../../../../../pages/_app';
 import MarketLoginUI from './MarketLogin.presenter';
 import { LOGIN_USER } from './MarketLogin.queries';
 export default function MarketLogin() {

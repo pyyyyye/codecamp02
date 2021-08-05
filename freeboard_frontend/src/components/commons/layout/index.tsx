@@ -3,9 +3,10 @@ import LayoutHeader from './header/LayoutHeader.container';
 import LayoutNavigation from './navigation/LayoutNavigation.container';
 import LayoutFooter from './footer/LayoutFooter.container';
 import styled from '@emotion/styled';
+import { ReactNode } from 'react';
 
 const Body = styled.div`
-  height: 500px;
+  margin: 0 auto;
 `;
 const Wrapper = styled.div`
   display: flex;
@@ -23,7 +24,7 @@ export default function Layout(props: IProps) {
       <LayoutBanner />
       <LayoutNavigation />
       <Wrapper>
-        <div style={{ backgroundColor: 'green' }}>사이드메뉴입니다.</div>
+        {/* <div style={{ backgroundColor: 'green' }}>사이드메뉴입니다.</div> */}
         <Body>{props.children}</Body>
       </Wrapper>
       <LayoutFooter />
