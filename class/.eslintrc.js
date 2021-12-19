@@ -16,5 +16,6 @@ module.exports = {
   rules: {
     quotes: [2, 'single', { avoidEscape: false }],
     'react/react-in-jsx-scope': 'off',
+    'react/prop-types': 'off',
   },
 };

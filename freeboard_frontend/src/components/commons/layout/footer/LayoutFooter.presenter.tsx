@@ -1,5 +1,9 @@
-import { FooterWrap } from './LayoutFooter.styles';
+import { FooterWrap, Footer } from './LayoutFooter.styles';
 
 export default function LayoutFooterUI() {
-  return <FooterWrap>푸터영역</FooterWrap>;
+  return (
+    <FooterWrap>
+      <Footer>푸터영역</Footer>
+    </FooterWrap>
+  );
 }

@@ -1,5 +1,5 @@
 // ---------- 중고마켓 로그인 index.tsx -------------
-import MarketLogin from '../../../src/components/units/market/MarketLogin.container';
+import MarketLogin from '../../../src/components/units/market/marketLogin/MarketLogin.container';
 import styled from '@emotion/styled';
 
 export const Wrapper = styled.div`
